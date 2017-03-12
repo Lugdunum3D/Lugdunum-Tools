@@ -1,0 +1,52 @@
+name: '2018_TD1_lugdunum'
+name_formatted: '[2018][TD1] Lugdunum'
+template_file: template.tex
+title: 'Technical Documentation n°1'
+version: '1.0'
+accountant: Yoann Long
+abstract:
+- source: doc/abstract.md
+summary:
+- source: doc/summary.md
+bodies:
+- source: doc/build.md
+- source: doc/guidelines.md
+  title: 'Code Guidlelines and Style'
+  header_shift: 1
+  tocdepth: 2
+authors:
+- name: Yoann Long
+- name: Antoine Bolvy
+- name: Quentin Buathier
+- name: Guillaume Labey
+- name: Stuart Sulaski
+- name: Corentin Chardeau
+- name: Nicolas Comte
+- name: Alexandre Quivy
+- name: Guillaume Sabatié
+history:
+- date: 2017-03-07
+  authors:
+  - Antoine Bolvy
+  version: '1.0'
+  modified_sections:
+  - All
+  comment: 'Creation of the document'
+- date: 2017-03-10
+  authors:
+  - Quentin Buathier
+  - Guillaume Labey
+  - Antoine Bolvy
+  version: '1.1'
+  modified_sections:
+  - Code Guidlelines and Style
+  comment: 'Added the guidelines'
+- date: 2017-03-11
+  authors:
+  - Antoine Bolvy
+  - Yoann Long
+  - Guillaume Sabatié
+  version: '1.2'
+  modified_sections:
+  - Building Lugdunum
+  comment: 'Added the instructions to build Lugdunum for different platforms'

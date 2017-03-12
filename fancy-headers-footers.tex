@@ -1,0 +1,54 @@
+\usepackage{fancyhdr}
+% Remove line on headers
+\renewcommand{\headrulewidth}{0pt}
+
+\fancypagestyle{default-nopage}{
+    \fancyhead{} % clear all
+
+    % left
+    \fancyhead[L]{
+        \raisebox{-0.5\height}{
+            \includegraphics[width=2cm]{images/logo-short.pdf}
+        }
+    }
+
+    % center
+    \fancyhead[C]{
+        \raisebox{-0.5\height}{
+            \includegraphics[width=2.5cm]{images/eip.pdf}
+        }
+    }
+
+    % right
+    \fancyhead[R]{\titlename}
+
+    \fancyfoot[L]{{\jobname}.pdf}
+    \fancyfoot[C]{\today}
+    \fancyfoot[R]{}
+}
+
+
+\fancypagestyle{default}{
+    \fancyhead{} % clear all
+
+    % left
+    \fancyhead[L]{
+        \raisebox{-0.5\height}{
+            \includegraphics[width=2cm]{images/logo-short.pdf}
+        }
+    }
+
+    % center
+    \fancyhead[C]{
+        \raisebox{-0.5\height}{
+            \includegraphics[width=2.5cm]{images/eip.pdf}
+        }
+    }
+
+    % right
+    \fancyhead[R]{\titlename}
+
+    \fancyfoot[L]{{\jobname}.pdf}
+    \fancyfoot[C]{\today}
+    \fancyfoot[R]{\thepage}
+}

@@ -1,0 +1,244 @@
+% This file was converted to LaTeX by Writer2LaTeX ver. 1.4
+% see http://writer2latex.sourceforge.net for more info
+\documentclass[10pt, a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=[rgb]{0.04, 0.55, 0.89},
+    citecolor=[rgb]{0.04, 0.55, 0.89},
+    filecolor=[rgb]{0.04, 0.55, 0.89},
+    urlcolor=[rgb]{0.04, 0.55, 0.89},
+    pdftitle=,
+    pdfauthor=Lugdunum,
+    pdfsubject=,
+    pdfkeywords=}
+
+\usepackage{graphicx,letltxmacro}
+\usepackage[no-math]{fontspec}
+\setmainfont{Open Sans}
+
+\usepackage{booktabs}
+
+\usepackage{listings}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,
+    language=C++,
+    captionpos=b,
+    tabsize=3,
+    frame=lines,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    breaklines=true,
+    showstringspaces=false,
+    basicstyle=\fontsize{12}{11}\lst@ifdisplaystyle\ttfamily\scriptsize\else\fi,
+    columns=fullflexible, % Ok if we use a fixed width font, fixes copy pase problem
+    % identifierstyle=\color{Magenta!90},
+    keywordstyle=\color{NavyBlue!80},
+    commentstyle=\color{OliveGreen!80},
+    stringstyle=\color{WildStrawberry}
+}
+
+% Add indint to first paragraph of each section
+\usepackage{indentfirst}
+
+% Change toc style
+\usepackage{tocloft}
+\renewcommand{\cftdot}{\tiny\normalfont.} % a small dot
+\renewcommand{\cftdotsep}{2.5} % with low spacing => small, descrete dotted line
+
+% Pandoc specials
+\usepackage{longtable}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{standalone}
+
+% Custom column types
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}} % left aligned fixed size column type
+\newcolumntype{Y}[1]{>{\raggedright\arraybackslash}X{#1}} % left aligned expandable column type
+
+% Add vertical space after paragraphs
+\usepackage{parskip}
+% But restore parindent set to 0 by parskip
+\setlength{\parindent}{3em}
+
+% Numbering
+\usepackage{titlesec}
+\setcounter{secnumdepth}{3}
+\renewcommand\thesection{}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+\renewcommand\thesubsection{\alph{subsection}.}
+\titlespacing*{\subsection}{0.3\parindent}{1ex}{1em}
+
+\renewcommand\thesubsubsection{\arabic{subsubsection}.}
+\titlespacing*{\subsubsection}{0.6\parindent}{1ex}{1em}
+
+\titleformat{\paragraph}[hang]{\normalfont\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{1\parindent}{3.25ex plus 1ex minus .2ex}{0.5em}
+
+% save the meaning of \includegraphics
+\LetLtxMacro\latexincludegraphics\includegraphics
+
+% pass the image to \shadowbox
+\renewcommand{\includegraphics}[2][]{\noindent\latexincludegraphics[#1]{#2}}
+
+
+% Page layout (geometry)
+\usepackage[
+    a4paper,
+    portrait,
+    margin=1in,
+    top=.5in,
+    headheight=60pt,
+    includeheadfoot, % include headerheight in pagesize calculations
+    % showframe
+]{geometry}
+
+\linespread{1.1}
+
+\setlength\tabcolsep{5pt}
+% \renewcommand\arraystretch{1.3}
+
+\def\titlename{\v{name_formatted|texesc}}%
+\title{\v{title|texesc}}
+\author{Lugdunum authors}
+\date{\today}
+
+% Pages styles
+\input{fancy-headers-footers}
+
+% For some reason the TOC did not respect \pagestyle, so we define it here,
+% credits to http://tex.stackexchange.com/q/5787/120111
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{default-nopage}}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+% The Lugdunum Logo
+\begin{center}
+    \includegraphics[width=4.8in]{./images/logo-long.pdf}
+\end{center}
+
+\begin{center}
+    \fontsize{28}{40}\selectfont
+    \bfseries
+    \v{title|texesc}
+\end{center}
+
+\bigskip
+\bigskip
+
+\textbf{Abstract}
+
+\b{for file in abstract}\b{if file.title is defined}\textbf{\v{file.title}}\b{endif}
+\input{\v{file.generated}}
+\b{endfor}
+
+\bigskip
+
+\textbf{The team}
+
+\bigskip
+
+\noindent
+\begin{tabularx}{\textwidth}{m{0.6in} X m{0.6in} X}
+    \includegraphics[width=0.6in,height=0.6in]{images/team/charde_c.png} & Corentin Chardeau           &
+    \includegraphics[width=0.6in,height=0.6in]{images/team/buathi_q.png} & Quentin Buathier            \\
+    \includegraphics[width=0.6in,height=0.6in]{images/team/comte_a.png}  & Nicolas Comte               &
+    \includegraphics[width=0.6in,height=0.6in]{images/team/labey_g.png}  & Guillaume Labey             \\
+    \includegraphics[width=0.6in,height=0.6in]{images/team/sulask_s.png} & Stuart Sulaski              &
+    \includegraphics[width=0.6in,height=0.6in]{images/team/bolvy_a.png}  & Antoine Bolvy               \\
+    \includegraphics[width=0.6in,height=0.6in]{images/team/picque_y.png} & Yoann Picquenot             &
+    \includegraphics[width=0.6in,height=0.6in]{images/team/quivy_a.png}  & Alexandre Quivy             \\
+    \includegraphics[width=0.6in,height=0.6in]{images/team/sabati_g.png} & Guillaume-Heritiana Sabatié &
+    \includegraphics[width=0.6in,height=0.6in]{images/team/long_y.png}   & Yoann Long                  \\
+\end{tabularx}
+
+\clearpage
+\pagestyle{default-nopage}
+
+\textbf{Document summary}
+
+\b{for file in summary}\b{if file.title is defined}\textbf{\v{file.title}}\b{endif}
+\input{\v{file.generated}}
+\b{endfor}
+
+
+\bigskip
+
+\textbf{Document description}
+
+\noindent
+\begin{tabularx}{\textwidth}{llX} \toprule
+    \textbf{Title               } &:& \v{name_formatted|texesc}                   \\
+    \textbf{Modification date   } &:& \today                            \\
+    \textbf{Accountant          } &:& \v{accountant}                    \\
+    \textbf{E-mail              } &:& lugdunum\_2018@labeip.epitech.eu  \\
+    \textbf{Subjet              } &:& Lugdunum -- \v{title|texesc}      \\
+    \textbf{Document version    } &:& \v{version}                       \\\bottomrule
+\end{tabularx}
+
+\clearpage
+
+\textbf{Revisions table}
+
+\noindent
+\begin{tabularx}{\textwidth}{l P{3cm} l P{3.5cm} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Date}& \textbf{Authors}& \textbf{Version}& \textbf{Modified Section(s)}& \textbf{Comment(s)} \\\midrule
+\b{for change in history}
+\v{change.date}&\b{for author in change.authors}\mbox{\v{author}}\b{if not loop.last}, \b{endif}\b{endfor}&\v{change.version}&\v{', '.join(change.modified_sections)|escape}&\v{change.comment}\\\b{if not loop.last}\midrule\b{endif}
+
+\b{endfor}
+\bottomrule
+\end{tabularx}
+
+\clearpage
+
+% Save the toc level, so we can revert back to it after includes that
+% change it "temporarely"
+\b{if tocdepth is not defined}
+\b{set tocdepth = 3}
+\b{endif}
+
+\setcounter{tocdepth}{\v{tocdepth}}
+\tableofcontents
+
+\clearpage
+\setcounter{page}{1}
+\pagestyle{default}
+
+% Include each body
+\b{for file in bodies}\b{if file.title is defined}\section{\v{file.title}}\b{endif}
+\b{if file.tocdepth is defined}
+\addtocontents{toc}{\setcounter{tocdepth}{\v{file.tocdepth}}}
+\b{endif}
+\input{\v{file.generated}}
+\b{if file.tocdepth is defined}
+\addtocontents{toc}{\setcounter{tocdepth}{\v{tocdepth}}}
+\b{endif}
+\clearpage
+\b{endfor}
+
+\end{document}
+
