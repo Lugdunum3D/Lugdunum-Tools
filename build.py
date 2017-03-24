@@ -167,6 +167,7 @@ class Build(object):
             '--from=markdown_github+yaml_metadata_block+raw_tex+inline_code_attributes',
             '--filter=./pandoc-filters/pandoc-github-img.py',
             '--filter=./pandoc-filters/pandoc-dl-images.py',
+            '--filter=./pandoc-filters/pandoc-mermaid.py',
             '--filter=./pandoc-filters/pandoc-svg.py',
             '--filter=./pandoc-filters/pandoc-graphviz.py',
             '--filter=./pandoc-filters/pandoc-header-images-to-latex.py',
