@@ -170,6 +170,7 @@ class Build(object):
             '--filter=./pandoc-filters/pandoc-svg.py',
             '--filter=./pandoc-filters/pandoc-graphviz.py',
             '--filter=./pandoc-filters/pandoc-header-images-to-latex.py',
+            '--filter=./pandoc-filters/pandoc-generate-doxylinks.py',
         ]
 
         if 'header_shift' in file_config and file_config['header_shift']: # also check if not 0
