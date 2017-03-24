@@ -15,7 +15,7 @@ git submodule update --init --recursive
 ```
  
 
-## <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" style="width: .15in"> Linux
+## <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" width="24"> Linux
 
 ### General prerequisites 
 
