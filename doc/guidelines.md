@@ -1002,8 +1002,6 @@ int main(int ac, char* av[]) {
 
 If the constructor line is longer than the [maximum line length](#line-length), all the code after `:` should be written to a new line.
 
-To discuss (Not clear)
-
 Example:
 ```cpp
 Camera::Camera(const std::string& name) : Node(name) { // Short constructor

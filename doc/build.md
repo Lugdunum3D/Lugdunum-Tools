@@ -157,7 +157,7 @@ make install
 ```
 
 :::info
-**Note:** Here the CMake path might be different of the one displayed in the command above, please double-check before executing the command and/or filing a bug report.
+Here the CMake path might be different of the one displayed in the command above, please double-check before executing the command and/or filing a bug report.
 :::
 
 ### Samples
