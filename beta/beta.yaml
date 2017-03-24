@@ -1,0 +1,34 @@
+name: '2018_beta_plan_lugdunum'
+name_formatted: '[2018][Beta][Plan] Lugdunum'
+template_file: beta/template-fr.tex
+title: 'Plan de beta'
+version: '1.0'
+accountant: Yoann Long
+abstract:
+- source: beta/abstract.md
+summary:
+- source: beta/summary.md
+bodies:
+- source: beta/eip.md
+- source: beta/beta.md
+authors:
+- name: Yoann Long
+- name: Antoine Bolvy
+- name: Quentin Buathier
+- name: Guillaume Labey
+- name: Stuart Sulaski
+- name: Corentin Chardeau
+- name: Nicolas Comte
+- name: Alexandre Quivy
+- name: Guillaume Sabatié
+history:
+- date: 2017-03-23
+  authors:
+  - Antoine Bolvy
+  - Yoann Long
+  - Guillaume Labey
+  - Stuart Sulaski
+  version: '1.0'
+  modified_sections:
+  - Toutes
+  comment: 'Creation du document'
