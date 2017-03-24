@@ -1,0 +1,43 @@
+name: '2018_ID1_lugdunum'
+name_formatted: '[2018][ID1] Lugdunum'
+template_file: template.tex
+title: 'Installation Documentation n°1'
+version: '1.1'
+accountant: Yoann Long
+abstract:
+- source: doc/abstract.md
+summary:
+- source: doc/summary-id1.md
+bodies:
+- source: doc/eip.md
+- source: doc/dependencies.md
+- source: doc/build.md
+- source: doc/contact-us.md
+authors:
+- name: Yoann Long
+- name: Antoine Bolvy
+- name: Quentin Buathier
+- name: Guillaume Labey
+- name: Stuart Sulaski
+- name: Corentin Chardeau
+- name: Nicolas Comte
+- name: Alexandre Quivy
+- name: Guillaume Sabatié
+history:
+- date: 2017-03-07
+  authors:
+  - Antoine Bolvy
+  version: '1.0'
+  modified_sections:
+  - All
+  comment: 'Creation of the document'
+- date: 2017-03-11
+  authors:
+  - Antoine Bolvy
+  - Yoann Long
+  - Nicolas Comte
+  - Guillaume Sabatié
+  version: '1.1'
+  modified_sections:
+  - Build instruction and requirements
+  comment: 'Added the section'
