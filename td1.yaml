@@ -62,3 +62,10 @@ history:
   modified_sections:
   - Architecture of Lugdunum
   comment: 'Created the architecture section'
+- date: 2017-04-03
+  authors:
+  - Antoine Bolvy
+  version: '1.3.1'
+  modified_sections:
+  - Architecture of Lugdunum
+  comment: 'Fixed the missing sequence diagrams'

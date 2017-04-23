@@ -29,7 +29,7 @@ def mermaid_to_svg(elem, doc):
         target = IMAGE_DIR + '/' + filename + '.svg'
         tmpfn = IMAGE_DIR + '/' + filename
         if os.path.isfile(target):
-            return
+            return Para(Image(Str(''), url=target, title='', attributes={'width': '100%'}))
         try:
             os.mkdir(IMAGE_DIR)
             sys.stderr.write('Created directory ' + IMAGE_DIR + '\n')
