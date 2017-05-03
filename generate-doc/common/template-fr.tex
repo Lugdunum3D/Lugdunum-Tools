@@ -10,6 +10,7 @@
 \usepackage{supertabular}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
 
 \hypersetup{
     colorlinks=true,
@@ -110,8 +111,20 @@
     top=.5in,
     headheight=60pt,
     includeheadfoot, % include headerheight in pagesize calculations
-    % showframe
+    showframe
 ]{geometry}
+
+% Forest trees
+\definecolor{lugdunum}{HTML}{5cbdff}
+
+\usepackage{wasysym,amssymb}
+\usepackage[edges]{forest}
+\usetikzlibrary{shadows,arrows.meta}
+\tikzset{
+  parent/.style={align=left,fill=lugdunum!80,rounded corners=3pt},
+  child/.style={align=left,fill=lugdunum!50,rounded corners=3pt},
+  grandchild/.style={align=left}
+}
 
 \linespread{1.1}
 
@@ -136,7 +149,7 @@
 
 % The Lugdunum Logo
 \begin{center}
-    \includegraphics[width=4.8in]{./images/logo-long.pdf}
+    \includegraphics[width=4.8in]{../../Visual-Identity/logo/dist/pdf/long.pdf}
 \end{center}
 
 \begin{center}

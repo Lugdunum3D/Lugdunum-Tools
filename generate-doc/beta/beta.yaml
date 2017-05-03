@@ -1,6 +1,6 @@
 name: '2018_beta_plan_lugdunum'
 name_formatted: '[2018][Beta][Plan] Lugdunum'
-template_file: beta/template-fr.tex
+template_file: common/template-fr.tex
 title: 'Plan de beta'
 version: '1.0'
 accountant: Yoann Long
@@ -9,7 +9,7 @@ abstract:
 summary:
 - source: beta/summary.md
 bodies:
-- source: beta/eip.md
+- source: common/eip-fr.md
 - source: beta/beta.md
 authors:
 - name: Yoann Long
