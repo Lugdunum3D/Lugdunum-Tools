@@ -152,8 +152,9 @@ class Build(object):
         and its path in file_config['generated']
         """
         source_hash = hashlib.md5(open(file_config['source'], 'rb').read()).hexdigest()
+        hash_prefix = source_hash[:8] + '_'
         file_config['job_name'] = os.path.splitext(os.path.basename(file_config['source']))[0]
-        target_file_name = os.path.join(OUT_FOLDER, source_hash[:8] + '_' + file_config['job_name'])
+        target_file_name = os.path.join(OUT_FOLDER, hash_prefix + file_config['job_name'])
         file_config['generated'] = target_file_name
 
         if os.path.isfile(target_file_name + '.tex') and not self.args.nocache:
@@ -162,9 +163,10 @@ class Build(object):
 
         logging.info('Running pandoc for %s', file_config['source'])
 
-        cmnd = [
+        cmd = [
             'pandoc',
             '--from=markdown_github+yaml_metadata_block+raw_tex+inline_code_attributes',
+            '--metadata=hash-prefix:' + hash_prefix,
             '--filter=./pandoc-filters/pandoc-github-img.py',
             '--filter=./pandoc-filters/pandoc-dl-images.py',
             '--filter=./pandoc-filters/pandoc-mermaid.py',
@@ -177,20 +179,26 @@ class Build(object):
 
         if 'header_shift' in file_config and file_config['header_shift']: # also check if not 0
             logging.info('Header shift %s', file_config['header_shift'])
-            cmnd += [
+            cmd += [
                 '--metadata=filter-header-shift:' + str(file_config['header_shift']),
                 '--filter=./pandoc-filters/pandoc-header-shift.py',
             ]
 
-        cmnd += [
+        if 'wbs' in file_config and file_config['wbs']:
+            logging.info('Enabling wbs')
+            cmd += [
+                '--filter=./wbs/pandoc-filters/wbs.py'
+            ]
+
+        cmd += [
             '--listings',
             '--to=latex',
             '--output=' + target_file_name + '.tex',
             file_config['source'],
         ]
 
-        logging.debug(' '.join(cmnd))
-        pipes = subprocess.Popen(cmnd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        logging.debug(' '.join(cmd))
+        pipes = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         std_out, std_err = pipes.communicate()
 
         sys.stdout.buffer.write(std_out)

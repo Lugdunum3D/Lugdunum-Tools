@@ -1,0 +1,38 @@
+\b{for counter, initial_value in counters}
+\setcounter{\v{counter}}{\v{initial_value}}
+\b{endfor}
+
+\begin{figure}[H]
+\centering
+\begin{forest}
+for tree={%
+  thick,
+  grow=east,
+  child anchor=west,
+  anchor=base west,
+  tier/.pgfmath=level(),
+  l sep=0.6cm,
+  calign=child edge,
+  calign child=1,
+  reversed=true,
+  fit=band,
+  s sep=0.15cm,
+  node options={font=\footnotesize\sffamily},
+  edge={semithick,lightgray,-Latex},
+  where level=0{%
+    parent,
+  }{},
+  where level=1{%
+    child,
+    parent anchor=south west,
+    % tier=p,
+    for descendants={%
+      grandchild,
+    }
+  }{},
+},
+forked edges,
+\v{content}%
+\end{forest}
+\end{figure}
+
