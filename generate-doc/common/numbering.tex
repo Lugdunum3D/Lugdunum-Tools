@@ -1,0 +1,19 @@
+% Numbering
+\usepackage{titlesec}
+\setcounter{secnumdepth}{3}
+\renewcommand\thesection{}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+\renewcommand\thesubsection{\alph{subsection}.}
+\titlespacing*{\subsection}{1\parindent}{1ex}{1em}
+
+\renewcommand\thesubsubsection{\thesubsection\arabic{subsubsection}.}
+\titlespacing*{\subsubsection}{2\parindent}{1ex}{1em}
+
+\titleformat{\paragraph}[hang]{\normalfont\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{3\parindent}{3.25ex plus 1ex minus .2ex}{0.5em}

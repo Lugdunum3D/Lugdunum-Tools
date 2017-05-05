@@ -1,0 +1,11 @@
+% Forest trees
+\definecolor{lugdunum}{HTML}{5cbdff}
+
+\usepackage{wasysym,amssymb}
+\usepackage[edges]{forest}
+\usetikzlibrary{shadows,arrows.meta}
+\tikzset{
+  parent/.style={align=left,fill=lugdunum!80,rounded corners=3pt},
+  child/.style={align=left,fill=lugdunum!50,rounded corners=3pt},
+  grandchild/.style={align=left}
+}

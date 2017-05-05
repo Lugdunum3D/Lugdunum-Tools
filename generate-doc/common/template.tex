@@ -1,55 +1,24 @@
-% This file was converted to LaTeX by Writer2LaTeX ver. 1.4
-% see http://writer2latex.sourceforge.net for more info
-\documentclass[10pt, a4paper]{article}
+\documentclass[9pt, a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb,amsfonts,textcomp}
 \usepackage[dvipsnames]{xcolor}
-\usepackage{array}
-\usepackage{supertabular}
-\usepackage{tabularx}
-\usepackage{hyperref}
+\usepackage{float}
+\usepackage{standalone}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=[rgb]{0.04, 0.55, 0.89},
-    citecolor=[rgb]{0.04, 0.55, 0.89},
-    filecolor=[rgb]{0.04, 0.55, 0.89},
-    urlcolor=[rgb]{0.04, 0.55, 0.89},
-    pdftitle=,
-    pdfauthor=Lugdunum,
-    pdfsubject=,
-    pdfkeywords=}
+\input{common/hyperref}
 
 \usepackage{graphicx,letltxmacro}
 \usepackage[no-math]{fontspec}
-\setmainfont{Open Sans}
+\setmainfont[Color=primary,BoldItalicFont=Lato-BoldItalic,BoldFont=Lato-Bold,ItalicFont=Lato-Italic]{Lato-Regular}
+\setsansfont[Color=primary,BoldItalicFont=Lato-BoldItalic,BoldFont=Lato-Bold,ItalicFont=Lato-Italic]{Lato-Regular}
+\setmonofont[Scale=MatchLowercase,Mapping=tex-text]{DejaVu-Sans-Mono}
+
 
 \usepackage{booktabs}
 
-\usepackage{listings}
-\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
-
-\lstset{
-    backgroundcolor=\color{lbcolor},
-    tabsize=4,
-    language=C++,
-    captionpos=b,
-    tabsize=3,
-    frame=lines,
-    numbers=left,
-    numberstyle=\tiny,
-    numbersep=5pt,
-    breaklines=true,
-    showstringspaces=false,
-    basicstyle=\fontsize{12}{11}\lst@ifdisplaystyle\ttfamily\scriptsize\else\fi,
-    columns=fullflexible, % Ok if we use a fixed width font, fixes copy pase problem
-    % identifierstyle=\color{Magenta!90},
-    keywordstyle=\color{NavyBlue!80},
-    commentstyle=\color{OliveGreen!80},
-    stringstyle=\color{WildStrawberry}
-}
+\input{common/listing}
 
 % Add indint to first paragraph of each section
 \usepackage{indentfirst}
@@ -60,40 +29,19 @@
 \renewcommand{\cftdotsep}{2.5} % with low spacing => small, descrete dotted line
 
 % Pandoc specials
-\usepackage{longtable}
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\usepackage{standalone}
 
-% Custom column types
-\usepackage{array}
-\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}} % left aligned fixed size column type
-\newcolumntype{Y}[1]{>{\raggedright\arraybackslash}X{#1}} % left aligned expandable column type
+% Tables
+\input{common/tables}
 
 % Add vertical space after paragraphs
 \usepackage{parskip}
 % But restore parindent set to 0 by parskip
-\setlength{\parindent}{3em}
+\setlength{\parindent}{1em}
 
 % Numbering
-\usepackage{titlesec}
-\setcounter{secnumdepth}{3}
-\renewcommand\thesection{}
-\makeatletter
-\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
-\let\sectionignore\@gobbletwo
-\let\latex@numberline\numberline
-\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
-\makeatother
-
-\renewcommand\thesubsection{\alph{subsection}.}
-\titlespacing*{\subsection}{0.3\parindent}{1ex}{1em}
-
-\renewcommand\thesubsubsection{\arabic{subsubsection}.}
-\titlespacing*{\subsubsection}{0.6\parindent}{1ex}{1em}
-
-\titleformat{\paragraph}[hang]{\normalfont\bfseries}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph}{1\parindent}{3.25ex plus 1ex minus .2ex}{0.5em}
+\input{common/numbering}
 
 % save the meaning of \includegraphics
 \LetLtxMacro\latexincludegraphics\includegraphics
@@ -101,17 +49,11 @@
 % pass the image to \shadowbox
 \renewcommand{\includegraphics}[2][]{\noindent\latexincludegraphics[#1]{#2}}
 
+% Geometry
+\input{common/geometry}
 
-% Page layout (geometry)
-\usepackage[
-    a4paper,
-    portrait,
-    margin=1in,
-    top=.5in,
-    headheight=60pt,
-    includeheadfoot, % include headerheight in pagesize calculations
-    % showframe
-]{geometry}
+% Forest trees
+\input{common/foresttrees}
 
 \linespread{1.1}
 
@@ -124,7 +66,7 @@
 \date{\today}
 
 % Pages styles
-\input{fancy-headers-footers}
+\input{common/fancy-headers-footers}
 
 % For some reason the TOC did not respect \pagestyle, so we define it here,
 % credits to http://tex.stackexchange.com/q/5787/120111
@@ -136,7 +78,7 @@
 
 % The Lugdunum Logo
 \begin{center}
-    \includegraphics[width=4.8in]{./images/logo-long.pdf}
+    \includegraphics[width=4.8in]{../../Visual-Identity/logo/dist/pdf/long.pdf}
 \end{center}
 
 \begin{center}
@@ -190,12 +132,12 @@
 
 \noindent
 \begin{tabularx}{\textwidth}{llX} \toprule
-    \textbf{Title               } &:& \v{name_formatted|texesc}                   \\
-    \textbf{Modification date   } &:& \today                            \\
-    \textbf{Accountant          } &:& \v{accountant}                    \\
-    \textbf{E-mail              } &:& lugdunum\_2018@labeip.epitech.eu  \\
-    \textbf{Subjet              } &:& Lugdunum -- \v{title|texesc}      \\
-    \textbf{Document version    } &:& \v{version}                       \\\bottomrule
+    \textbf{Title                } &:& \v{name_formatted|texesc}         \\
+    \textbf{Modification date    } &:& \today                            \\
+    \textbf{Accountant           } &:& \v{accountant}                    \\
+    \textbf{E-mail               } &:& lugdunum\_2018@labeip.epitech.eu  \\
+    \textbf{Subjet               } &:& Lugdunum -- \v{title|texesc}      \\
+    \textbf{Document version     } &:& \v{version}                       \\\bottomrule
 \end{tabularx}
 
 \clearpage

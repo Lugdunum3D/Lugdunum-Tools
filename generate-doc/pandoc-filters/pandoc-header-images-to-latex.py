@@ -15,38 +15,9 @@ is converted to a real Image with a width of 16px
 
 __author__ = "Antoine Bolvy"
 
-from functools import partial
-from panflute import run_filter, Header, Image, RawInline, RawBlock, Citation
-from panflute.tools import HorizontalSpaces, VerticalSpaces
+from panflute import run_filter, Header, Image, RawInline, RawBlock
 
-from utils import tex_escape
-
-def stringify(element):
-    """
-    Return the raw text version of an elements (and its children element).
-    """
-
-    def attach_str(elem, _, answer):
-        """
-        A
-        """
-        if isinstance(elem, (RawInline, RawBlock)) and elem.format == 'tex':
-            ans = elem.text
-        elif hasattr(elem, 'text'):
-            ans = tex_escape(elem.text)
-        elif isinstance(elem, HorizontalSpaces):
-            ans = ' '
-        elif isinstance(elem, VerticalSpaces):
-            ans = '\n\n'
-        elif isinstance(elem, Citation):
-            ans = ''
-        else:
-            ans = ''
-        answer.append(ans)
-
-    answer = []
-    element.walk(partial(attach_str, answer=answer))
-    return ''.join(answer)
+from utils import tex_escape, stringify
 
 def convert_px_to_in(dpi, elem):
     """

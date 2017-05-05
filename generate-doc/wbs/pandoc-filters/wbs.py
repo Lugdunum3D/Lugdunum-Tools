@@ -79,6 +79,18 @@ class WBSTree(object):
             logging.error('Failed to parse tree %s', source)
             sys.exit(1)
 
+    def print(self, tree=None):
+        if not tree:
+            tree = self.tree
+
+        def _print(tree, level):
+            data = '    ' * level + tree['name']
+            print(data + (50 - len(data)) * ' ' + '| ' + tree['desc'], file=sys.stderr)
+            for child in tree['children']:
+                _print(child, level + 1)
+
+        _print(tree, 0)
+
     def parse_tree(self, source):
         with open(source) as csv_f:
             reader = csv.reader(csv_f)
