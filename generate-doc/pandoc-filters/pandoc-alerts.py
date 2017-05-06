@@ -18,25 +18,24 @@ __author__ = "Antoine Bolvy"
 import re
 from panflute import run_filter, Para, Str, Space, Strong
 
-def html_img_to_image(elem, _):
+def alerts_to_text(elem, _):
     """
     Apply the translations, see module doc
     """
-    # We are only interested in "raw_html" elements
     if not isinstance(elem, Para):
         return
 
     if not isinstance(elem.content[0], Str):
         return
 
-
-    match = re.match(r':::(info|warning|danger)', elem.content[0].text)
-    if match:
-        if match.group(1) == 'info':
+    match1 = re.match(r':::(info|warning|danger)', elem.content[0].text)
+    match2 = re.match(r':::', elem.content[-1].text)
+    if match1 and match2:
+        if match1.group(1) == 'info':
             return Para(Strong(Str('Note:')), Space, *elem.content[2:-2])
-        if match.group(1) == 'warning':
+        if match1.group(1) == 'warning':
             return Para(Strong(Str('Warning:')), Space, *elem.content[2:-2])
-        if match.group(1) == 'danger':
+        if match1.group(1) == 'danger':
             return Para(Strong(Str('Caution:')), Space, *elem.content[2:-2])
 
 
@@ -45,7 +44,7 @@ def main(doc=None):
     """
     Run the fitler
     """
-    return run_filter(html_img_to_image, doc=doc)
+    return run_filter(alerts_to_text, doc=doc)
 
 if __name__ == "__main__":
     main()

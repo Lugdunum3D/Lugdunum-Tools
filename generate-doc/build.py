@@ -165,8 +165,9 @@ class Build(object):
 
         cmd = [
             'pandoc',
-            '--from=markdown_github+yaml_metadata_block+raw_tex+inline_code_attributes',
+            '--from=markdown_github+yaml_metadata_block+raw_tex+inline_code_attributes+implicit_figures+link_attributes+bracketed_spans+footnotes+inline_notes',
             '--metadata=hash-prefix:' + hash_prefix,
+            '--filter=./pandoc-filters/pandoc-links-to-footnotes.py',
             '--filter=./pandoc-filters/pandoc-github-img.py',
             '--filter=./pandoc-filters/pandoc-dl-images.py',
             '--filter=./pandoc-filters/pandoc-mermaid.py',
@@ -175,6 +176,7 @@ class Build(object):
             '--filter=./pandoc-filters/pandoc-header-images-to-latex.py',
             '--filter=./pandoc-filters/pandoc-generate-doxylinks.py',
             '--filter=./pandoc-filters/pandoc-alerts.py',
+            '--filter=./pandoc-filters/pandoc-add-captions.py',
         ]
 
         if 'header_shift' in file_config and file_config['header_shift']: # also check if not 0
@@ -217,7 +219,8 @@ class Build(object):
         make_sure_path_exists(OUT_FOLDER)
 
         for file in self.config['bodies']:
-            self.pandoc_file(file)
+            if file['type'] == 'content':
+                self.pandoc_file(file)
         for file in self.config['abstract']:
             self.pandoc_file(file)
         for file in self.config['summary']:

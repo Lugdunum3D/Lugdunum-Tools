@@ -53,7 +53,7 @@ def html_img_to_image(elem, _):
                     attr_value = '0' + attr_value
                 attributes[decl.name] = attr_value
 
-    title = Str(html_doc.get('alt')) if 'alt' in html_doc.attrib else ''
+    title = html_doc.get('alt') if 'alt' in html_doc.attrib else ''
     return Image(attributes=attributes, url=html_doc.get('src'), title=title)
 
 

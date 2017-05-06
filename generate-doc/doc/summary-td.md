@@ -2,7 +2,7 @@ This document is intended for every potential Lugdunum contributor, or for every
 
 In this document you will find an overview of the Lugdunum project, and details about how we interfaced with the Vulkan API.
 
-Each section will be detailed with examples with hopes to let this document be as simple and straightforward as possible, for developers of all levels. It is however required that you have some background about 3D rendering *and your own system (git, cmake, etc.)* as we will not cover the basics, that are usually well documented on other documents and do not enter in the scope of this manual. When appropriate, useful links and resources will be provided for your convenience.
+Each section will be detailed with examples with hopes to let this document be as simple and straightforward as possible, for developers of all levels. It is however required that you have some background in 3D rendering, and a working knowledge of your own system (git, CMake, etc.) as we will not cover the basics, that are usually well documented on other documents and do not enter in the scope of this manual. When appropriate, useful links and resources will be provided for your convenience.
 
 The document ends with an information section, meant to answer the questions you could have after reading: for example how to report bugs, how to contact us, and other useful links.
 

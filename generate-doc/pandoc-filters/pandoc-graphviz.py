@@ -29,6 +29,7 @@ def graphviz(elem, doc):
     if isinstance(elem, CodeBlock) and 'graphviz' in elem.classes:
         code = elem.text
         graph = pygraphviz.AGraph(string=code)
+        title = graph.graph_attr.pop('label', '')
         graph.layout()
         filename = md5(code)
         filetype = {'html': 'png', 'latex': 'pdf'}.get(doc.format, 'png')
@@ -41,7 +42,7 @@ def graphviz(elem, doc):
                 pass
             graph.draw(src, prog='dot')
             sys.stderr.write('Created image ' + src + '\n')
-        return Para(Image(Str(''), url=src, title='', attributes={'width': '100%'}))
+        return Para(Image(Str(''), url=src, title=title, attributes={'width': '100%'}))
 
 
 if __name__ == "__main__":

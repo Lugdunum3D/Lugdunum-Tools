@@ -55,7 +55,7 @@ def doxylink(elem, _):
     """
     Apply the doxylink
     """
-    # We are only interested in "raw_html" elements
+    # We are only interested in "links" elements
     if not isinstance(elem, Link):
         return
 

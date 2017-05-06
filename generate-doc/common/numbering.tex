@@ -9,11 +9,23 @@
 \def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
 \makeatother
 
-\renewcommand\thesubsection{\alph{subsection}.}
-\titlespacing*{\subsection}{1\parindent}{1ex}{1em}
+\newlength{\titleindent}
+\setlength{\titleindent}{1em}
 
-\renewcommand\thesubsubsection{\thesubsection\arabic{subsubsection}.}
-\titlespacing*{\subsubsection}{2\parindent}{1ex}{1em}
+\titleformat{\section}{\normalfont\fontsize{18}{20}\bfseries}{\thesection}{1em}{}
+\renewcommand\thesection{\Roman{section}.}
+\titlespacing*{\section}{1\titleindent}{2ex}{0.1em}
+
+\titleformat{\subsection}{\normalfont\fontsize{14}{16}\bfseries}{\thesubsection}{1em}{}
+\renewcommand\thesubsection{\arabic{subsection}.}
+\titlespacing*{\subsection}{2\titleindent}{2ex}{0.1em}
+
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{14}\bfseries}{\thesubsubsection}{1em}{}
+\renewcommand\thesubsubsection{\thesubsection\alph{subsubsection}.}
+\titlespacing*{\subsubsection}{3\titleindent}{2ex}{0.1em}
 
 \titleformat{\paragraph}[hang]{\normalfont\bfseries}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph}{3\parindent}{3.25ex plus 1ex minus .2ex}{0.5em}
+\titlespacing*{\paragraph}{4\titleindent}{3.25ex plus 1ex minus .2ex}{0.5em}
+
+\titleformat{\subparagraph}[hang]{\normalfont\bfseries}{\thesubparagraph}{1em}{}
+\titlespacing*{\subparagraph}{5\titleindent}{3.25ex plus 1ex minus .2ex}{0.5em}

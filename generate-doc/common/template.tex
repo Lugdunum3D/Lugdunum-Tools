@@ -1,32 +1,42 @@
-\documentclass[9pt, a4paper]{article}
+\documentclass[12pt, a4paper, oneside]{book}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb,amsfonts,textcomp}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{float}
+\floatplacement{figure}{H}
 \usepackage{standalone}
+
+% Should help with weird line breaking (https://tex.stackexchange.com/a/141854/120111)
+\usepackage{microtype}
+
+% Change toc style
+\usepackage{tocloft}
+\renewcommand{\cftdot}{\tiny\normalfont.} % a small dot
+\renewcommand{\cftdotsep}{2.5} % with low spacing => small, descrete dotted line
+\usepackage{etoc}
 
 \input{common/hyperref}
 
 \usepackage{graphicx,letltxmacro}
 \usepackage[no-math]{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
 \setmainfont[Color=primary,BoldItalicFont=Lato-BoldItalic,BoldFont=Lato-Bold,ItalicFont=Lato-Italic]{Lato-Regular}
 \setsansfont[Color=primary,BoldItalicFont=Lato-BoldItalic,BoldFont=Lato-Bold,ItalicFont=Lato-Italic]{Lato-Regular}
-\setmonofont[Scale=MatchLowercase,Mapping=tex-text]{DejaVu-Sans-Mono}
+\setmonofont[Scale=MatchLowercase,Ligatures=TeX]{DejaVu-Sans-Mono}
+\newcommand{\fontmonoinline}{\fontspec[Scale=MatchLowercase,Ligatures=TeX]{DejaVu-Sans-Mono}}
+\fontdimen2\font=0.5ex
 
+% Break lines after ::
+\def\::{\discretionary{::}{}{::}}
 
 \usepackage{booktabs}
 
 \input{common/listing}
 
 % Add indint to first paragraph of each section
-\usepackage{indentfirst}
-
-% Change toc style
-\usepackage{tocloft}
-\renewcommand{\cftdot}{\tiny\normalfont.} % a small dot
-\renewcommand{\cftdotsep}{2.5} % with low spacing => small, descrete dotted line
+% \usepackage{indentfirst}
 
 % Pandoc specials
 \providecommand{\tightlist}{%
@@ -38,7 +48,7 @@
 % Add vertical space after paragraphs
 \usepackage{parskip}
 % But restore parindent set to 0 by parskip
-\setlength{\parindent}{1em}
+% \setlength{\parindent}{1em}
 
 % Numbering
 \input{common/numbering}
@@ -163,23 +173,34 @@
 \b{set tocdepth = 3}
 \b{endif}
 
-\setcounter{tocdepth}{\v{tocdepth}}
+\etocsetnexttocdepth{section}
 \tableofcontents
+% \setcounter{tocdepth}{\v{tocdepth}}
 
 \clearpage
 \setcounter{page}{1}
 \pagestyle{default}
 
 % Include each body
-\b{for file in bodies}\b{if file.title is defined}\section{\v{file.title}}\b{endif}
-\b{if file.tocdepth is defined}
-\addtocontents{toc}{\setcounter{tocdepth}{\v{file.tocdepth}}}
-\b{endif}
+\b{for file in bodies}
+\b{if file.type == 'chapter' }
+\chapter{\v{file.title}}
+\localtableofcontents
+
+\b{elif file.type == 'content'}
+\b{if file.title is defined}\section{\v{file.title}}\b{endif}
+% \b{if file.tocdepth is defined}
+% \addtocontents{toc}{\setcounter{tocdepth}{\v{file.tocdepth}}}
+% \b{endif}
+
 \input{\v{file.generated}}
-\b{if file.tocdepth is defined}
-\addtocontents{toc}{\setcounter{tocdepth}{\v{tocdepth}}}
+
+% \b{if file.tocdepth is defined}
+% \addtocontents{toc}{\setcounter{tocdepth}{\v{tocdepth}}}
+% \b{endif}
+
 \b{endif}
-\clearpage
+\null\clearpage
 \b{endfor}
 
 \end{document}
