@@ -28,6 +28,9 @@ def alerts_to_text(elem, _):
     if not isinstance(elem.content[0], Str):
         return
 
+    if not isinstance(elem.content[-1], Str):
+        return
+
     match1 = re.match(r':::(info|warning|danger)', elem.content[0].text)
     match2 = re.match(r':::', elem.content[-1].text)
     if match1 and match2:

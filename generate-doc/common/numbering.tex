@@ -12,15 +12,27 @@
 \newlength{\titleindent}
 \setlength{\titleindent}{1em}
 
-\titleformat{\section}{\normalfont\fontsize{18}{20}\bfseries}{\thesection}{1em}{}
+\titleformat
+{\chapter} % command
+[display] % shape
+{\bfseries\LARGE\itshape} % format
+{Part. \ \thechapter} % label
+{0.5ex} % sep
+{
+\fontsize{40}{30}\selectfont
+} % before-code
+[
+] % after-code
+
+\titleformat{\section}{\normalfont\fontsize{18}{20}\selectfont\bfseries}{\thesection}{1em}{}
 \renewcommand\thesection{\Roman{section}.}
 \titlespacing*{\section}{1\titleindent}{2ex}{0.1em}
 
-\titleformat{\subsection}{\normalfont\fontsize{14}{16}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsection}{\normalfont\fontsize{14}{16}\selectfont\bfseries}{\thesubsection}{1em}{}
 \renewcommand\thesubsection{\arabic{subsection}.}
 \titlespacing*{\subsection}{2\titleindent}{2ex}{0.1em}
 
-\titleformat{\subsubsection}{\normalfont\fontsize{12}{14}\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{14}\selectfont\bfseries}{\thesubsubsection}{1em}{}
 \renewcommand\thesubsubsection{\thesubsection\alph{subsubsection}.}
 \titlespacing*{\subsubsection}{3\titleindent}{2ex}{0.1em}
 

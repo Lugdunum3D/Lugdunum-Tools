@@ -1,0 +1,70 @@
+name: 2018_UD2_lugdunum
+name_formatted: '[2018][UD2] Lugdunum'
+template_file: common/template.tex
+title: "User Documentation n\xB02"
+version: '2.0'
+accountant: Yoann Long
+abstract:
+- source: doc/abstract.md
+summary:
+- source: doc/summary-ud.md
+bodies:
+- type: content
+  source: common/eip.md
+  url: https://hackmd.io/EwMxFME5wNnBaALAYwIaqQZgCbfugVgEZ5kAOI1ImABlgHZ7kg==/download
+  etag: W/"43e-C3ZmUwjPurfPEvEWaJ9knMFr4nk"
+- type: chapter
+  title: Lugdunum
+- type: content
+  source: doc/quickstart.md
+  url: https://hackmd.io/JwEwHAxgDAhgRgZgLRmBESAsBGBGxgjICmCAZgGwQDsArBJjZkA/download
+  etag: W/"49b8-/iWaJWhHH2NIBNNgN78qXyARD54"
+- type: content
+  source: doc/contact-us.md
+- type: chapter
+  title: Lugbench
+- type: content
+  source: doc/lugbench-user.md
+  url: https://hackmd.io/CwEwZgnMCMDGBMBaArBWFHGZRBDAbAAzIq6xEDsApiFYYQBxA===/download
+  etag: W/"5ee-SPYNrk/m9XwAahUgYddvWQwCxzY"
+authors:
+- name: Yoann Long
+- name: Antoine Bolvy
+- name: Quentin Buathier
+- name: Guillaume Labey
+- name: Stuart Sulaski
+- name: Corentin Chardeau
+- name: Nicolas Comte
+- name: Alexandre Quivy
+- name: "Guillaume Sabati\xE9"
+history:
+- date: 2017-03-07
+  authors:
+  - Antoine Bolvy
+  version: '1.0'
+  modified_sections:
+  - All
+  comment: Creation of the document
+- date: 2017-03-10
+  authors:
+  - Stuart Sulaski
+  - Nicolas Comte
+  - Corentin Chardeau
+  - Yoann Long
+  version: '1.1'
+  modified_sections:
+  - Quickstart guide
+  comment: Added quickstart guide
+- date: 2017-05-07
+  authors:
+  - Yoann Long
+  - Antoine Bolvy
+  - Nicolas Comte
+  - Guillaume Labey
+  - Yoann Picquenot
+  - Corentin Chardeau
+  - Quentin Buathier
+  version: '2.0'
+  modified_sections:
+  - All Sections
+  comment: Second version of the Technical documentation. Added Lugbench
