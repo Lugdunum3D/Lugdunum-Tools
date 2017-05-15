@@ -80,36 +80,41 @@ class Downloader(object):
 
         self.args = parser.parse_args()
 
-    def download_file(self, file_config):
+    def download_file(self, file_config, etags):
         if 'url' in file_config:
             # Download the file from `url` and save it locally under `file_name`:
             logging.info('Downloading %s', file_config['source'])
             # urllib.request.urlretrieve(file_config['url'], file_config['source'])
             headers = {}
-            if 'etag' in file_config:
-                headers['If-None-Match'] = file_config['etag']
-            r = self.session.get(file_config['url'], headers=headers, stream=True)
+            if file_config['url'] in etags:
+                headers['If-None-Match'] = etags[file_config['url']]
+            r = self.session.get(file_config['url'], headers=headers)
             logging.info('Status code %d', r.status_code)
             if r.status_code == 200:
                 with open(file_config['source'], 'wb') as f:
-                    r.raw.decode_content = True
-                    shutil.copyfileobj(r.raw, f)
-                file_config['etag'] = r.headers['ETag']
+                    f.write(r.text.encode('utf8'))
+                etags[file_config['url']] = r.headers['ETag']
             logging.info('Done %s', file_config['source'])
 
     def run(self):
         """
         """
 
-        for file in self.config['bodies']:
-            self.download_file(file)
-        for file in self.config['abstract']:
-            self.download_file(file)
-        for file in self.config['summary']:
-            self.download_file(file)
+        with open('etags.yaml', 'r') as yaml_file:
+            etags = ordered_load(yaml_file)
 
-        with open(self.args.config, 'w') as yaml_file:
-            ordered_dump(self.config, yaml_file, default_flow_style=False)
+        if etags is None:
+            etags = {}
+
+        for file in self.config['bodies']:
+            self.download_file(file, etags)
+        for file in self.config['abstract']:
+            self.download_file(file, etags)
+        for file in self.config['summary']:
+            self.download_file(file, etags)
+
+        with open('etags.yaml', 'w') as yaml_file:
+            ordered_dump(etags, yaml_file, default_flow_style=False)
 
         logging.info('Done!')
 
