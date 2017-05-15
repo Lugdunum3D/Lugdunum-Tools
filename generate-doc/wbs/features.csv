@@ -97,7 +97,7 @@ b,            Metalic / Rougness mapping,,,
 b,            Chargement de fonts,,,2D
 b,"            Customisation de couleur, taille, ombre et alignements",,,2D
 b,        Dessin 2D (HUD),,,2D
-,   Optimisations,,,DETAILS
+,    Optimisations,,,DETAILS
 -,        Pipeline cache,Mise en cache de la pipeline,,DETAILS
 -,        Tesselation,,,PHYSIC_ADVANCED
 -,        Compute Shaders,,,
