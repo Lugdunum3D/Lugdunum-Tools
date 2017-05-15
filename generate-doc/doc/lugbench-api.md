@@ -9,7 +9,8 @@ GET    | `/api/v1/gpus/:id` | Returns the GPU with the id ":id" if present in th
 PUT    | `/api/v1/gpus`     | Add or edit a GPU if present in the database.
 
 :::info
-The details of the object to pass in the payload is available [here](https://github.com/Lugdunum3D/LugBench-API/blob/dev/v1/models/gpu/index.js "Mongoose Schema"). The object has to be formatted in json.
+The details of the object to pass in the payload is available [online on the API's repository](https://github.com/Lugdunum3D/LugBench-API/blob/dev/v1/models/gpu/index.js "Mongoose Schema").
+The object has to be formatted in json.
 :::
 
 ## Response codes

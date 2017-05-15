@@ -104,7 +104,7 @@ These headers should be included as "system" headers, with angle brackets instea
 #include <lug/System/Logger/Message.hpp>
 ```
 
-You should include all the headers that define the symbols you rely upon, except in the unusual case of forward declaration. If you rely on symbols from `bar.hpp`, don't count on the fact that you included `foo.hpp` which (currently) includes `bar.hpp`: include `bar.hpp` yourself, unless `foo.hpp` explicitly demonstrates its intent to provide you the symbols of `bar.hpp`. However, any includes present in the related header do not need to be included again in the related `.cpp` (i.e., `foo.cpp` can rely on `foo.hpp`'s includes).
+You should include all the headers that define the symbols you rely upon, except in the unusual case of forward declaration. If you rely on symbols from `bar.hpp`, don't rely on the fact that you included `foo.hpp` which (currently) includes `bar.hpp`: include `bar.hpp` yourself, unless `foo.hpp` explicitly demonstrates its intent to provide you the symbols of `bar.hpp`. However, any includes present in the related header do not need to be included again in the related `.cpp` (i.e., `foo.cpp` can rely on `foo.hpp`'s includes).
 
 # Scoping
 
@@ -130,11 +130,9 @@ class Logger {
 } // lug
 ```
 
-Do not declare anything in the namespace `std`, and do not use inline namespace.
+Do not declare anything in the namespace `std`, and do not use inline namespace, except for very, very specific use-cases.
 
 *using-directive* and *namespace-aliases* are prohibited in header files, only use them in `.cpp` files or in some particular cases in internal-only namespaces.
-
-Do not use inline namespaces, except for very, very specific use-cases.
 
 ## Unnamed Namespaces and Static Variables
 
@@ -148,7 +146,7 @@ Static methods should generally be closely related to instances of the class or 
 
 ## Local Variables
 
-Do not separate variable declaration from it initialization.
+Do not separate variable declaration from its initialization.
 
 ```cpp
 int x = 40; // Good
@@ -433,7 +431,7 @@ Even if the C++\-style cast syntax (with `static_cast<>`) is more verbose, alway
 
 * Use brace initialization to convert arithmetic types (e.g. int64{x}). This is the safest approach because code will not compile if conversion can result in information loss. The syntax is also concise.
 * Use `static_cast` as the equivalent of a C-style cast that does value conversion, when you need to explicitly up-cast a pointer from a class to its superclass, or when you need to explicitly cast a pointer from a superclass to a subclass. In this last case, you must be sure your object is actually an instance of the subclass.
-* Use `const_cast` to remove the const qualifier (see const).
+* Use `const_cast` to remove the const qualifier, avoid using it too frequently.
 * Use `reinterpret_cast` to do unsafe conversions of pointer types to and from integer and other pointer types. Use this only if you know what you are doing and you understand the aliasing issues.
 
 ## Streams
@@ -535,17 +533,17 @@ Source files must be placed in the `./src/` folder, whereas header and inline so
 
 ```dirtree
 .
-├── src
-│   ├── Foo
-│   │   └── Bar
-│   │       ├── MyClass.hpp
-│   │       └── MyClass.inl
-│   └── ...
-└──include
-    ├── Foo
-    │   └── Bar
-    │       └── MyClass.cpp
-    └── ...
+|-- src
+|   |-- Foo
+|   |   +-- Bar
+|   |       |-- MyClass.hpp
+|   |       +-- MyClass.inl
+|   +-- ...
++--include
+    |-- Foo
+    |   +-- Bar
+    |       +-- MyClass.cpp
+    +-- ...
 ```
 
 
@@ -1023,6 +1021,6 @@ Each file should end with a new line (`\n`).
 
 This style guideline is quite complete, but still missing some details. If you find an edge-case that this guideline does not cover, feel free to report any issue or contribute to this guideline.
 
-As a general rule of thumb, your code should be the most readable possible, and it is always possible to flex some rules, it makes your code better.
+As a general rule of thumb, your code should be the most readable possible, and it is always possible to flex some rules, if it makes your code better.
 
 Good luck, have fun coding with us!

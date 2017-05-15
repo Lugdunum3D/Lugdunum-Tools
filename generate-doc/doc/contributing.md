@@ -74,10 +74,10 @@ lug_add_test(Math
 ```
 
 :::info
-`source_group` on line 12 is a special CMake directive used for grouping source files in IDE project generation, for example groups in Visual Studio. More info [on the official CMake documentation](https://cmake.org/cmake/help/v3.0/command/source_group.html).
+`source_group` on line 12 is a special CMake directive used for grouping source files in IDE project generation, for example groups in Visual Studio. More information is available [on the official CMake documentation](https://cmake.org/cmake/help/v3.0/command/source_group.html).
 :::
 
 ## Build tests
 
-When using cmake, you need to add the command line argument `-DBUILD_TESTS`.
+When using CMake, you need to add the command line argument `-DBUILD_TESTS`.
 It will create one project for each test directory. In the previous example, it will create a `runMathUnitTests` project.

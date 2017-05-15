@@ -1,7 +1,7 @@
-name: 2018_UD2_lugdunum
-name_formatted: '[2018][UD2] Lugdunum'
+name: '2018_ID2_lugdunum'
+name_formatted: '[2018][ID2] Lugdunum'
 template_file: common/template.tex
-title: "User Documentation n\xB02"
+title: 'Installation Documentation n°2'
 version: '2.0'
 accountant: Yoann Long
 abstract:
@@ -9,8 +9,8 @@ abstract:
   source: doc/abstract.md
 summary:
 - type: content
-  source: doc/summary-ud.md
-  url: https://hackmd.io/JwFgpgRgZghmDGBaAjABngE0SaSAcqArAMyIBsEqZATMHsmGccUA/download
+  source: doc/summary-id.md
+  url: https://hackmd.io/OwMwLAJgHBEIYFooGNkDYFigZgIwICNhsQEIBTc7KAJmwE4DkJgg/download
 bodies:
 - type: content
   source: common/eip.md
@@ -18,15 +18,16 @@ bodies:
 - type: chapter
   title: Lugdunum
 - type: content
-  source: doc/quickstart.md
-  url: https://hackmd.io/JwEwHAxgDAhgRgZgLRmBESAsBGBGxgjICmCAZgGwQDsArBJjZkA/download
+  source: doc/build.md
+  url: https://hackmd.io/MYZgpgZgDMCcsFpwgEwICwFYJgQQwEYxgEAjPYFANnXQgHZNM8g=/download
 - type: content
   source: doc/contact-us.md
+  url: https://hackmd.io/JzBsCMGYFMEZoLQDMCGATAHAgLAVm9guAOzgDGCoEsZkwSss+QA=/download
 - type: chapter
   title: Lugbench
 - type: content
-  source: doc/lugbench-user.md
-  url: https://hackmd.io/CwEwZgnMCMDGBMBaArBWFHGZRBDAbAAzIq6xEDsApiFYYQBxA===/download
+  source: doc/build-lugbench.md
+  url: https://hackmd.io/BzAmDME5gZgJgLSQKalAgLJOB2JdhEBjABjgFYA2Ig5ARgENKg==/download
 authors:
 - name: Yoann Long
 - name: Antoine Bolvy
@@ -36,7 +37,7 @@ authors:
 - name: Corentin Chardeau
 - name: Nicolas Comte
 - name: Alexandre Quivy
-- name: "Guillaume Sabati\xE9"
+- name: Guillaume Sabatié
 history:
 - date: 2017-03-07
   authors:
@@ -44,27 +45,26 @@ history:
   version: '1.0'
   modified_sections:
   - All Sections
-  comment: Creation of the document
-- date: 2017-03-10
+  comment: 'Creation of the document'
+- date: 2017-03-11
   authors:
-  - Stuart Sulaski
-  - Nicolas Comte
-  - Corentin Chardeau
+  - Antoine Bolvy
   - Yoann Long
+  - Nicolas Comte
+  - Guillaume Sabatié
   version: '1.1'
   modified_sections:
-  - Quickstart guide
-  comment: Added quickstart guide
+  - Build instruction and requirements
+  comment: 'Added the section'
 - date: 2017-05-07
   authors:
-  - Yoann Long
   - Antoine Bolvy
+  - Yoann Long
   - Nicolas Comte
-  - Guillaume Labey
+  - Guillaume Sabatié
   - Yoann Picquenot
   - Corentin Chardeau
-  - Quentin Buathier
   version: '2.0'
   modified_sections:
   - All Sections
-  comment: Second version of the Technical documentation. Added Lugbench
+  comment: 'Added LugBench and general improvements for the 2.0 version of the document'

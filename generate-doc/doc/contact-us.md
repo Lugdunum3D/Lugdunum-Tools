@@ -1,3 +1,7 @@
+---
+title: Contact us
+---
+
 # Contact us
 
 The development team is available through a wide range of channels if you want to reach out to us:

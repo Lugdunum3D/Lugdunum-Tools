@@ -148,6 +148,12 @@ digraph {
 ```
 > [Main classes of the renderer]{#fig:renderer-classes}
 
+In the diagram \autoref{fig:renderer-classes}, we are representing the main classes of the renderer and their dependencies.
+
+* Plain line ( --->): Inheritance
+* Dashed line ( \- \- \- >): Contains an instance of the class with ownership
+* Dotted line ( · · · >): Contains an instance of the class without ownership
+
 \clearpage
 
 The diagram \autoref{fig:renderer-view-usage} shows an example of how classes interact with each other:
@@ -280,11 +286,11 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-The method [`Core::Application::run()`](#lug::Core::Application::run()) is the main loop of the engine which polls the events from the window and renders everything correctly. As expected, we can see that the [`Core::Application`](#lug::Core::Application) is polling all the events from the [`Render::Window`](#lug::Graphics::Render::Window) and sending them to the `UserApplication` through the method `UserApplication::onEvent(const lug::Window::Event& event)`.
+The method [`Core::Application::run()`](#lug::Core::Application::run()) is the main loop of the engine which polls the events from the window and renders everything correctly. As expected, we can see that the [`Core::Application`](#lug::Core::Application) is polling all the events from the [`Render::Window`](#lug::Graphics::Render::Window) and sending them to the `UserApplication` through the method [`UserApplication::onEvent(const lug::Window::Event& event)`](#lug::Core::Application::onEvent()).
 
 Then, [`Core::Application`](#lug::Core::Application) is calling the method [`Renderer::beginFrame()`](#lug::Graphics::Renderer::beginFrame()) which call itself the method [`Render::Window::beginFrame()`](#lug::Graphics::Render::Window::beginFrame()) to notify the [`Render::Window`](#lug::Graphics::Render::Window) that we are starting a new frame.
 
-Finally, the user can update the logic of their application in the method `UserApplication::onFrame(const lug::System::Time& elapsedTime)`.
+Finally, the user can update the logic of their application in the method [`UserApplication::onFrame(const lug::System::Time& elapsedTime)`](#lug::Core::Application::onFrame()).
 
 At the end of the frame, the method [`Renderer::endFrame()`](#lug::Graphics::Renderer::endFrame()) is called and will call the method [`Render::Target::render()`](#lug::Graphics::Render::Target::render()) for all [`Render::Target`](#lug::Graphics::Render::Target) to draw and will finish the frame by calling the method [`Render::Window::endFrame()`](#lug::Graphics::Render::Window::endFrame()) to notify the [`Render::Window`](#lug::Graphics::Render::Window) that we are ending this frame.
 
@@ -410,12 +416,12 @@ Each arrow represents a Vulkan semaphore for synchronization purpose.
 4. We change the layout of this image to `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
 5. We add the image to the presentation queue of the swapchain.
 
-Steps 2 and 4 are using prebuilt Vulkan command buffers, one for each image in the swapchain.
+For steps 2 and 4 we are using one Vulkan command buffer per image in the swapchain. Each of the command buffers are built beforehand, therefore we don't need to rebuild them each frame.
 Step 3 is dependent on the render technique used.
 
 #### CPU Side
 
-It is up to each method to select semaphores, from a pool, to be used for each step.
+Since our semaphores are stored in a pool, we let each method ([`beginFrame()`](#lug::Graphics::Vulkan::Render::Window::beginFrame()), [`endFrame()`](#lug::Graphics::Vulkan::Render::Window::endFrame()), ...) select their own semaphore(s) to use.
 
 ##### Steps 1 & 2
 
@@ -501,7 +507,7 @@ digraph {
 
 The [`Vulkan::Render::Technique::Forward`](#lug::Graphics::Vulkan::Render::Technique::Forward) has two different [`Vulkan::Render::Queue`](#lug::Graphics::Vulkan::Render::Queue), i.e. one transfer and one graphics.
 
-The transfer [`Render::Queue`](#lug::Graphics::Render::Queue) is responsible for updating the datas of the [`Render::Camera`](#lug::Graphics::Render::Camera) and [`Light::Light`](#lug::Graphics::Light::Light)s, each one contained in an uniform buffer [`Vulkan::API::Buffer`](#lug::Graphics::Vulkan::API::Buffer) sent in separate [`Vulkan::API::CommandBuffer`](#lug::Graphics::Vulkan::API::CommandBuffer)s (i.e. "Command buffer A" and "Command buffer B" in the above schema).
+The transfer [`Render::Queue`](#lug::Graphics::Render::Queue) is responsible for updating the data of the [`Render::Camera`](#lug::Graphics::Render::Camera) and [`Light::Light`](#lug::Graphics::Light::Light)s, each of which is contained in a uniform buffer [`Vulkan::API::Buffer`](#lug::Graphics::Vulkan::API::Buffer) which is sent through different [`Vulkan::API::CommandBuffer`](#lug::Graphics::Vulkan::API::CommandBuffer)s (i.e. "Command buffer A" and "Command buffer B" in the above schema).
 These [`Vulkan::API::CommandBuffer`](#lug::Graphics::Vulkan::API::CommandBuffer)s are then sent to the transfer [`Render::Queue`](#lug::Graphics::Render::Queue).
 
 Here is the structure of the uniform buffers for the camera and the lights:
@@ -568,7 +574,7 @@ A [`Vulkan::Render::BufferPool::SubBuffer`](#lug::Graphics::Vulkan::Render::Buff
 
 ##### Triple buffering
 
-Because we are using triple buffering, we need a way to store data for a specific image. For that we have [`Vulkan::Render::Technique::Forward::FrameData`](#lug::Graphics::Vulkan::Render::Technique::Forward::FrameData) that contains all we need to render one specific frame (command buffers, depth buffer, etc.). To avoid re-using a command buffer already in use, we are synchronizing their access with a fence.
+Because we are using triple buffering, we need a way to store data for a specific image. For that we have [`Vulkan::Render::Technique::Forward::FrameData`](#lug::Graphics::Vulkan::Render::Technique::Forward::FrameData) that contains all we need to render one specific frame (command buffers, depth buffer, etc.). To avoid using a command buffer already in use, we are synchronizing their access with a fence.
 
 To share [`Vulkan::Render::BufferPool::SubBuffer`](#lug::Graphics::Vulkan::Render::BufferPool::SubBuffer) across frames, e.g. if the camera does not move, we have a way to reuse the same [`Vulkan::Render::BufferPool::SubBuffer`](#lug::Graphics::Vulkan::Render::BufferPool::SubBuffer). We associate the [`Vulkan::Render::BufferPool::SubBuffer`](#lug::Graphics::Vulkan::Render::BufferPool::SubBuffer) with the object (camera or light), and test at the beginning of the frame if we can use a previous one (if the object has not changed from the update of this [`Vulkan::Render::BufferPool::SubBuffer`](#lug::Graphics::Vulkan::Render::BufferPool::SubBuffer)). 
 
