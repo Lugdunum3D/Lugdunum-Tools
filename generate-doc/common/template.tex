@@ -17,6 +17,7 @@
 \renewcommand{\cftdotsep}{2.5} % with low spacing => small, descrete dotted line
 \usepackage{etoc}
 
+\usepackage[hyphens]{url}
 \input{common/hyperref}
 
 \usepackage{graphicx,letltxmacro}
@@ -64,6 +65,10 @@
 
 % Forest trees
 \input{common/foresttrees}
+
+% \usepackage{draftwatermark}
+% \SetWatermarkLightness{0.9}
+% \SetWatermarkScale{1}
 
 \linespread{1.1}
 
@@ -186,6 +191,7 @@
 \b{if file.type == 'chapter' }
 \chapter{\v{file.title}}
 \localtableofcontents
+\null\clearpage
 
 \b{elif file.type == 'content'}
 \b{if file.title is defined}\section{\v{file.title}}\b{endif}
@@ -198,9 +204,8 @@
 % \b{if file.tocdepth is defined}
 % \addtocontents{toc}{\setcounter{tocdepth}{\v{tocdepth}}}
 % \b{endif}
-
+\clearpage
 \b{endif}
-\null\clearpage
 \b{endfor}
 
 \end{document}

@@ -1,7 +1,6 @@
 % Numbering
 \usepackage{titlesec}
 \setcounter{secnumdepth}{3}
-\renewcommand\thesection{}
 \makeatletter
 \def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
 \let\sectionignore\@gobbletwo
@@ -24,20 +23,22 @@
 [
 ] % after-code
 
-\titleformat{\section}{\normalfont\fontsize{18}{20}\selectfont\bfseries}{\thesection}{1em}{}
+% Title/Heading Formatting
+
+\titleformat{\section}[hang]{\fontsize{18}{20}\selectfont\bfseries}{\thesection}{1em}{}
 \renewcommand\thesection{\Roman{section}.}
 \titlespacing*{\section}{1\titleindent}{2ex}{0.1em}
 
-\titleformat{\subsection}{\normalfont\fontsize{14}{16}\selectfont\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsection}[hang]{\fontsize{14}{16}\selectfont\bfseries}{\thesubsection}{1em}{}
 \renewcommand\thesubsection{\arabic{subsection}.}
 \titlespacing*{\subsection}{2\titleindent}{2ex}{0.1em}
 
-\titleformat{\subsubsection}{\normalfont\fontsize{12}{14}\selectfont\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\subsubsection}[hang]{\fontsize{12}{14}\selectfont\bfseries}{\thesubsubsection}{1em}{}
 \renewcommand\thesubsubsection{\thesubsection\alph{subsubsection}.}
 \titlespacing*{\subsubsection}{3\titleindent}{2ex}{0.1em}
 
-\titleformat{\paragraph}[hang]{\normalfont\bfseries}{\theparagraph}{1em}{}
+\titleformat{\paragraph}[hang]{\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}{4\titleindent}{3.25ex plus 1ex minus .2ex}{0.5em}
 
-\titleformat{\subparagraph}[hang]{\normalfont\bfseries}{\thesubparagraph}{1em}{}
+\titleformat{\subparagraph}[hang]{\bfseries}{\thesubparagraph}{1em}{}
 \titlespacing*{\subparagraph}{5\titleindent}{3.25ex plus 1ex minus .2ex}{0.5em}
