@@ -17,7 +17,6 @@
 \renewcommand{\cftdotsep}{2.5} % with low spacing => small, descrete dotted line
 \usepackage{etoc}
 
-\usepackage[hyphens]{url}
 \input{common/hyperref}
 
 \usepackage{graphicx,letltxmacro}
@@ -36,9 +35,6 @@
 
 \input{common/listing}
 
-% Add indint to first paragraph of each section
-% \usepackage{indentfirst}
-
 % Pandoc specials
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -46,10 +42,8 @@
 % Tables
 \input{common/tables}
 
-% Add vertical space after paragraphs
+% Add vertical space after paragraphs, this also sets parindent to 0
 \usepackage{parskip}
-% But restore parindent set to 0 by parskip
-% \setlength{\parindent}{1em}
 
 % Numbering
 \input{common/numbering}
@@ -180,7 +174,6 @@
 
 \etocsetnexttocdepth{section}
 \tableofcontents
-% \setcounter{tocdepth}{\v{tocdepth}}
 
 \clearpage
 \setcounter{page}{1}

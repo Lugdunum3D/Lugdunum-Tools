@@ -1,29 +1,39 @@
-\documentclass[10pt, a4paper]{article}
+\documentclass[12pt, a4paper, oneside]{book}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb,amsfonts,textcomp}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{float}
+\floatplacement{figure}{H}
 \usepackage{standalone}
 
-\input{common/hyperref}
-
-\usepackage{graphicx,letltxmacro}
-\usepackage[no-math]{fontspec}
-\setmainfont{Open Sans}
-
-\usepackage{booktabs}
-
-\input{common/listing}
-
-% Add indint to first paragraph of each section
-\usepackage{indentfirst}
+% Should help with weird line breaking (https://tex.stackexchange.com/a/141854/120111)
+\usepackage{microtype}
 
 % Change toc style
 \usepackage{tocloft}
 \renewcommand{\cftdot}{\tiny\normalfont.} % a small dot
 \renewcommand{\cftdotsep}{2.5} % with low spacing => small, descrete dotted line
+\usepackage{etoc}
+
+\input{common/hyperref}
+
+\usepackage{graphicx,letltxmacro}
+\usepackage[no-math]{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont[Color=primary,BoldItalicFont=Lato-BoldItalic,BoldFont=Lato-Bold,ItalicFont=Lato-Italic]{Lato-Regular}
+\setsansfont[Color=primary,BoldItalicFont=Lato-BoldItalic,BoldFont=Lato-Bold,ItalicFont=Lato-Italic]{Lato-Regular}
+\setmonofont[Scale=MatchLowercase,Ligatures=TeX]{DejaVu-Sans-Mono}
+\newcommand{\fontmonoinline}{\fontspec[Scale=MatchLowercase,Ligatures=TeX]{DejaVu-Sans-Mono}}
+\fontdimen2\font=0.5ex
+
+% Break lines after ::
+\def\::{\discretionary{::}{}{::}}
+
+\usepackage{booktabs}
+
+\input{common/listing}
 
 % Pandoc specials
 \providecommand{\tightlist}{%
@@ -32,10 +42,8 @@
 % Tables
 \input{common/tables}
 
-% Add vertical space after paragraphs
+% Add vertical space after paragraphs, this also sets parindent to 0
 \usepackage{parskip}
-% But restore parindent set to 0 by parskip
-\setlength{\parindent}{3em}
 
 % Numbering
 \input{common/numbering}
@@ -51,6 +59,10 @@
 
 % Forest trees
 \input{common/foresttrees}
+
+% \usepackage{draftwatermark}
+% \SetWatermarkLightness{0.9}
+% \SetWatermarkScale{1}
 
 \linespread{1.1}
 
@@ -160,7 +172,7 @@
 \b{set tocdepth = 3}
 \b{endif}
 
-\setcounter{tocdepth}{\v{tocdepth}}
+\etocsetnexttocdepth{section}
 \tableofcontents
 
 \clearpage
@@ -168,16 +180,27 @@
 \pagestyle{default}
 
 % Include each body
-\b{for file in bodies}\b{if file.title is defined}\section{\v{file.title}}\b{endif}
-\b{if file.tocdepth is defined}
-\addtocontents{toc}{\setcounter{tocdepth}{\v{file.tocdepth}}}
-\b{endif}
+\b{for file in bodies}
+\b{if file.type == 'chapter' }
+\chapter{\v{file.title}}
+\localtableofcontents
+\null\clearpage
+
+\b{elif file.type == 'content'}
+\b{if file.title is defined}\section{\v{file.title}}\b{endif}
+% \b{if file.tocdepth is defined}
+% \addtocontents{toc}{\setcounter{tocdepth}{\v{file.tocdepth}}}
+% \b{endif}
+
 \input{\v{file.generated}}
-\b{if file.tocdepth is defined}
-\addtocontents{toc}{\setcounter{tocdepth}{\v{tocdepth}}}
-\b{endif}
+
+% \b{if file.tocdepth is defined}
+% \addtocontents{toc}{\setcounter{tocdepth}{\v{tocdepth}}}
+% \b{endif}
 \clearpage
+\b{endif}
 \b{endfor}
+
 
 \end{document}
 
