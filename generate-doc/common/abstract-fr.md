@@ -1,0 +1,1 @@
+Lugdunum est un moteur 3D open-source utilisant l'API graphique Vulkan. Le but de Lugdunum est de fournir un moteur 3D qui soit gratuit, moderne, et multi-plateforme pour tout le monde. Notre projet est accompagné d'une application compagnon, LugBench, qui a pour vocation de *benchmarker*, c'est à dire évaluer les machines qui utilisent la nouvelle API Vulkan.
