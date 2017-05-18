@@ -24,12 +24,12 @@ limit: 2
 show:
 - Build process
 - API rendu bas niveau
-- PBR
+- Rendu PBR
 - Gestionnaire de ressources
 - Gestionnaire de rendu
 - Camera
-- Ecran
-- Gestion de scenes
+- Écran
+- Gestion de scènes
 ```
 
 ```wbs
@@ -39,22 +39,11 @@ type: tree
 subtree: Moteur de rendu 2D/3D
 limit: 2
 show:
-- Système d'animation
 - Meshes
 - Lumières
 - Textures
 - Materiaux
-```
-
-```wbs
-features: ./wbs/features.csv
-root_name: Lugdunum
-type: tree
-subtree: Moteur de rendu 2D/3D
-limit: 2
-show:
 - Effets
-- Global Illumination
 - Gestionnaire 2D
 - Optimisations
 ```
@@ -115,7 +104,18 @@ limit: -1
 features: ./wbs/features.csv
 root_name: Lugdunum
 type: tree
-subtree: Lug-Bench
+subtree: LugBench
 limit: 2
+```
+
+\pagebreak
+
+## Dictionnaire du WBS
+
+```wbs
+features: ./wbs/features.csv
+root_name: Lugdunum
+type: table
+limit: -1
 ```
 

@@ -1,16 +1,21 @@
-name: '2018_WBS5_lugdunum'
+name: 2018_WBS5_lugdunum
 name_formatted: '[2018][WBS5] Lugdunum'
 template_file: common/template-fr.tex
 title: 'Structure de Découpage du Projet'
-version: '3.0'
+version: '3.1'
 accountant: Yoann Long
 abstract:
-- source: wbs/abstract.md
+- type: content
+  source: common/abstract-fr.md
 summary:
-- source: wbs/summary.md
+- type: content
+  url: https://hackmd.io/EYZgHAJgbArADBAtAdgGYQCyI8gTAY0WBmGW2RGWAE44BDfZGEIA/download
+  source: wbs/summary.md
 bodies:
-- source: common/eip-fr.md
-- source: wbs/wbs.md
+- type: content
+  source: common/eip-fr.md
+- type: content
+  source: wbs/wbs.md
   wbs: true
 authors:
 - name: Yoann Long
@@ -89,8 +94,19 @@ history:
 - date: 2017-04-27
   authors:
   - Antoine Bolvy
-  version: '3.0'
+  version: 3.0
   modified_sections:
   - Toutes
   comment: 'Nouveau modèle LaTeX'
+- date: 2017-05-17
+  authors:
+  - Yoann Long
+  - Antoine Bolvy
+  - Nicolas Comte
+  - Quentin Buathier
+  - Stuart Sulaski
+  version: 3.0
+  modified_sections:
+  - Toutes
+  comment: Mise à jour du dictionnaire complet pour WBS5
 

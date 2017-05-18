@@ -1,175 +1,158 @@
-,Name,Description,Responsable,Millestone
-,Moteur de rendu 2D/3D,,,
-,    Build process,Simplification du procédé de compilation multi-platforme,,
-v,        Cmake,Outil complet de compilation plateforme free,,
-v,        Cmake Find,Outil de recherche et d'integration de nos librairies,,
-v,        Third party integration,Intgration des binaires des third party dont nous dépendons,,
-b,        Script d'automatisation,Script automatisant ,,
-,    API rendu bas niveau,"Abstraction facilitant l'utilisation de l'API Vulkan (par exemple gestion de la pipeline graphique, des différents buffers, etc)",,
-v,        CommandBuffer,,,
-v,        CommandPool,,,
-v,        Fence,,,
-v,        Semaphore,,,
-v,        Queue,,,
-v,        Swapchain,,,
-v,        Image,,,
-v,        ImageView,,,
-v,        Pipeline graphique,Gestion de la pipeline graphique,,
-v,        Buffers,Gestion des différents types de buffers,,
-b,    PBR,Integration du système de rendu PBR (Physical Base Rendering),,
-b,    Gestionnaire de ressources,Gestion centralisée des ressources et de leur chargement,,SCENE_BASE
-,    Gestionnaire de rendu,,,
-v,        Forward rendering technique,Technique de rendu non optimisée en une seule phase,,MODEL_VIEWER
-b,        Deffered rendering technique,Technique de rendu optimisée dont les calculs sont séparés en plusieurs phases permettant d'optimiser les lumières,,SCENE_ADVANCED
--,        Multithread,Phases de rendu répartis sur plusieurs threads.,,SCENE_ADVANCED
--,        Tile-based Rendering,Optimisation de la pipeline pour les rendu sur mobile,,
-,    Camera,,,
--,        Spline Camera,Camera de déplacement automatique selon un ensemble de points,,
-,    Ecran,,,
-v,        Camera,Creation facilitée de caméra,,MODEL_VIEWER
-v,        Custom Viewports,Permet de définir une ou plusieurs zones de rendu sur l'écran,,MODEL_VIEWER
-v,        Synchronisation d'affichage,Technique de permettant de synchroniser un flux vidéo et un système vidéo (un écran),,RAIPONCE_ULTRA
--,        Contrôle du Gamma,Permet de modifier le contraste ,,BOUCHE_TROU
--,        Anti-Crénelage,"Algorithme permettant de réduire l'effet ""escalier"" resultant d'un rendu 3D transposé sur un ecran 2D",,RAIPONCE
-,    Gestion de scenes,,,SCENE_BASE
-b,        Gestion des modeles GLTF 2.0,Import de modele GLTF2.0 coté Vulkan,,MODEL_VIEWER
-v,        Transformation,"Translation, rotation ou dimension d'un objet dans l'espace",,SCENE_BASE
-?,        Partitionnement de l'espace,Algorithme d'optimisation des calculs,,SCENE_ADVANCED
-,    Système d'animation,,,CHARACTER
--,        Transformation,Animation par transformation des nodes,,CHARACTER
--,        Squelette,Gestion synthétique des articulations d'un corps,,BOUCHE_TROU
--,        Morph,Animation par morphing du mesh,,
-,    Meshes,,,
-v,        Gestion de Meshes,,,CUBE
-v,        Generation dynamique de mesh,,,CUBE
--,        Skin,,,
--,        Morph,,,
-,        Terrain,,,DETAILS
-?,            Height map,Création de champs de hauteur produisant des terrains,,
-?,            Materials Blending per triangle,Fusion de materials (plusieurs materials pour un seul triangle),,DETAILS
-,    Lumières,,,
-v,        Ambient light,Lumière qui émet de façon uniforme dans la scène,,
-v,        Directionnal light,Type de lumière directionnelle ayant un angle et une direction,,MATERIAL_BASE
-v,        Point light,Lumière qui émet dans toutes les directions à partir d'un point,,MATERIAL_BASE
-v,        Spot light,Lumière qui émet un cône dans une direction donnée,,MATERIAL_BASE
-?,        Area light,Lumière émise à partir d'une source rectangulaire (example: écran d'ordinateur),,RAIPONCE_ULTRA
-,    Textures,,,MATERIAL_BASE
-,        Chargement des textures,Importation de différent type de fichiers de textures (associé généralement à un modéle 3D),,
-b,            PNG,Prise en charge des textures au format PNG,,
-b,            JPG,Prise en charge des textures au format JPG,,
-b,            TGA,Prise en charge des textures au format TGA,,
-b,            BMP,Prise en charge des textures au format BMP,,
--,        Compression des textures,Il existe plusieurs algorithme de compression de texture gérer coté GPU,,
-?,        Mip map,Adaptation du niveau de détail des textures par rapport à la distance de l'objet et de la camera,,MATERIAL_BASE
-,    Materiaux,"Surfaces avec différentes propriétés (couleur, brillance, réaction à la lumière...)",,
-v,        Couleur,Couleur de base du material,,MATERIAL_BASE
-b,        Roughness,PBR gestion de la capaciteé du material a refleter son environnement,,RAIPONCE_ULTRA
-b,        Metallic,PBR gestion de la proprieté metalique (ou non metalique) d'un material,,RAIPONCE_ULTRA
-v,        Normal,Normal map d'un materiau,,MATERIAL_BASE
-b,        Ambient occlusion map,Prise en compte de l'exposition du modèle dans la scène,,RAIPONCE
-b,        Emissive,,,
-?,        Transparence,Capacité d'un materiau à être traversé par la lumière,,DETAILS
-?,        Reflection,Map de reflexion d'un modèle,,RAIPONCE_ULTRA
-,    Effets,,,
-,        Mapping,"Techniques de pertubations de la normal afin de donner du relief aux modèles 2D ou 3D, ou aux textures.",,
-b,            Normal map,,,RAIPONCE
-b,            Metalic / Rougness mapping,,,
-?,            Parralax bump mapping,,,RAIPONCE
-,        Shadow Mapping,"Gestion de different type d'ombre (statique, dynamique)",,
--,            Shadow map,,,
--,            Cascaded Shadow Maps,Ombres calculées au runtime,,SCENE_ADVANCED
--,        Profondeur de champ de vision,Effet de la caméra pour simuler l'effet de focus d'une vraie caméra ,,SCENE_ADVANCED
--,        Bloom,,,DETAILS
-,        Ciel,Gestion de la texture du ciel,,
--,            Skybox,,,RAIPONCE
-?,        Transluminescence,Effet de pénétration de la lumière au travers d'une surface.,,DETAILS
--,        High Dynamic Range (HDR),Gestion de nombreux niveaux d'intensité lumineuse,,RAIPONCE_ULTRA
-?,        HDRI,,,RAIPONCE_ULTRA
-?,        Lumière volumétrique,"Matérialisation des rayons lumineux à travers l'environnement (brouillard, poussière, fumée, vapeur)",,RAIPONCE_ULTRA
-,        Brouillard,Création simplifiée de brouillard.,,RAIPONCE_ULTRA
--,            Depth buffer,,,
-?,            Particle,,,
-,    Global Illumination,Ensemble de techniques afin d'obtenir un rendu de lumiere (et d'ombre) uniforme et/ou realiste d'une scene 3D,,DETAILS
-?,        Indirect Lightings,IBL (see google) ~= reflection,,DETAILS
-?,        Radiosity,~= emissive,,DETAILS
-,    Gestionnaire 2D,Gestion simple des surfaces 2D,,2D
-,        Fonts,Chargement et affichage simplifié de polices d'écriture,,2D
-b,            Chargement de fonts,,,2D
-b,"            Customisation de couleur, taille, ombre et alignements",,,2D
-b,        Dessin 2D (HUD),,,2D
-,    Optimisations,,,DETAILS
--,        Pipeline cache,Mise en cache de la pipeline,,DETAILS
--,        Tesselation,,,PHYSIC_ADVANCED
--,        Compute Shaders,,,
-,,,,
-,Bibliothèque math,Librairie de maths multi-plateforme,,
--,    Fonctions de base,"Fonctions tel les racines carrés, sin, cos",,BASE
-v,    Vecteurs,Integration des vecteurs ,,BASE
-v,    Matrices,Integration des matrices,,BASE
-v,    Quaternions,Integration des outils de calculs pour quaternions,,BASE
-v,    Fonctions géométriques,,,BASE
-,,,,
-,Bibliothèque système,,,
-v,    Fenêtres,"Gestion simplifiée des différents inputs (clavier, souris, manette...)",,BASE
-,    Events,,,
-v,        Clavier,Gestion des evenements clavier,,MODEL_VIEWER
-v,        Souris,Gestion des evenements souris,,MODEL_VIEWER
--,        Manettes de jeu,Gestion des evenements des manettes de jeu,,CHARACTER
--,        Ecran tactile,Gestion des evenements écran tactile,,MODEL_VIEWER
-v,    Gestion des librairies partagées,"Chargement de librairies dynamiques multiplateformes (.dll, .so)",,BOUCHE_TROU
-v,    Gestionnaire d'allocation mémoire,Gestion des outils d'allocation mémoire,,BASE
-v,    Gestion de timer,Gestion du temps ,,
-,    Tâches asynchrones,Gestion des tâches parrallèles,,
--,        Threads pool,"Management tool for threading, optimisation",,SCENE_ADVANCED
--,        Primitives de synchronisation,Read/Write Mutex,,SCENE_ADVANCED
-,    Gestion des erreurs,Uniformisation et journalisations des erreurs ,,
-v,"        Debug (assert, etc)",Integration des outils de debug tel les assertion,,BASE
-v,        Journalisation des erreurs,Integration des journaux d'erreur,,BASE
-v,        Uniformisation des erreurs / exceptions,Abstraction des erreurs système specific,,BASE
-,,,,
-,glTF2-loader,Bibliothèque de chargement de modèles glTF 2.0,,
-,    Build process,Simplification du procédé de compilation multi-platforme,,
-v,        Cmake,Outil complet de compilation plateforme free,,
-v,        Cmake Find,Outil de recherche et d'integration de nos librairies,,
-v,        Third party integration,Intgration des binaires des third party dont nous dépendons,,
-b,        Script d'automatisation,Script automatisant ,,
-b,    Chargement de modèles au format json,Chargement de modèles au format json,,
--,    Chargement de modèles au format binaire,Chargement de modèles au format binaire,,
-b,    Chargement des lights depuis l'extension KHR_materials_common,Implémentation de l'extension KHR_materials_common juste pour la partie lights,,
-,    Chargement de textures,,,
-b,        PNG,Prise en charge des textures au format PNG,,
-b,        JPG,Prise en charge des textures au format JPG,,
-b,        TGA,Prise en charge des textures au format TGA,,
-b,        BMP,Prise en charge des textures au format BMP,,
-,,,,
-,lugdunum-glTF2-convertor,Librairie et utilitaire de conversion de glTF 2.0 en un glTF 2.0 qui respecte les contraintes imposés par Lugdunum,,
-b,    Librairie,,,
--,    Executable,,,
-,,,,
-,Communication,,,BOUCHE_TROU
-b,    Site vitrine,Site faisant la liaison entre l'équipe de développement et les utilisateurs du moteur de jeu,,BOUCHE_TROU
-?,    Dev-Blog,"Site de communication sur les verrous techniques rencontrés par l'équipe, et nos methodes de résolutions",,
-,    Documentation,,,BOUCHE_TROU
-v,        Documentation Build Process,Documentation Build Process,,BOUCHE_TROU
-v,        Documentation Technique,Documentation Technique,,BOUCHE_TROU
-v,        Documentation Utilisateur,Documentation Utilisateur,,BOUCHE_TROU
-,,,,
-,Lug-Bench,,,BOUCHE_TROU
-,    Server Side,,,
-,        Site web de presentation des données (frontend),,,
-b,            Affichage des resultats lugbench sous forme de tableau trier par device,Affichage des tous les resultats de tests lancés par les utilisateurs de LugBench sous forme de tableau avec possibilité de tri des données,,
-?,            Compte utilisateur,,,
-v,        Base de donnée (MongoDB),Base de donnée intégrant tous les résultats des tests lancés par les utilisateurs de LugBench,,
-b,        RestAPI,RestAPI qui permet la communication entre la base de donnée et le site web / client LugBench,,
-,    Client Side,,,
-,        Build process,Simplification du procédé de compilation multi-platforme,,
-v,            Cmake,Outil complet de compilation plateforme free,,
-v,            Third party integration,Intgration des binaires des third party dont nous dépendons,,
-b,            Script d'automatisation,Script automatisant ,,
--,        GUI de l'application,Partie graphique de l'application LugBench,,
-v,        Recuperation des specs Vulkan,Récupération des toutes les données que Vulkan peut nous fournir à propos de la machine de l'utilisateur,,
-b,        Execution des scènes,Execution des scènes 3D avec notre moteur Lugdunum afin de benchmarker la machine de l'utilisateur,,
-b,        Upload des specs utilisateur au serveur,Envoi au serveur LugBench des informations et resultats des test de la machine utilisateur via la RestAPI,,
--,        Detection Hardware,Detection des specs de la machine de l'utilisateur,,
-?,    Intégration Phoronix Test Suite,,,
--,    Generation de score,,,
+,Name,Description,Type
+,Moteur de rendu 2D/3D,,group
+,    Build process,Simplification du procédé de compilation multi-platforme,group
+v,        CMake,"Système de compilation disponible via CMake, permettant la compilation de manière automatisée sur Linux, Windows et Android",
+v,        CMake FindLugdunum,Création d'outil utilitaires permettant la recherche et l'integration harmonieuse de nos bibliothèques,
+v,        Third party integration,Integration des binaires des dépendences tierces dont nous dépendons,
+b,        Script d'automatisation,Scripts automatisant la compilation des dépendances tierces et déploiment sur les plateformes CircleCI et AppVeyor,
+,    API rendu bas niveau,"Abstraction facilitant l'utilisation de l'API Vulkan (par exemple gestion de la pipeline graphique, des différents buffers, etc)",group
+v,        CommandBuffer,Abstraction des ordres envoyés au GPU,
+v,        CommandPool,"Asbtraction des zones mémoires associés à ces ordres, côté GPU",
+v,        Fence,Abstraction du méchanisme de synchronisation entre le CPU et le GPU,
+v,        Semaphore,Abstraction du méchanisme de synchronisation pour le GPU uniquement,
+v,        Queue,Asbtraction des cores GPU,
+v,        Swapchain,Abstraction du méchanisme de présentation sur l'écran,
+v,        Image,Abstraction des zones mémoires GPU pour les textures,
+v,        ImageView,Abstraction de l'accés à ces zones mémoires,
+v,        Pipeline graphique,Abstraction du mechanisme de rasterization (de la 3D à l'affichage sur un écran 2D),
+v,        Buffers,Abstraction des zones mémoires GPU,
+b,    Rendu PBR,Système de rendu utilisant le PBR (Physical Base Rendering),
+b,    Gestionnaire de ressources,Gestion centralisée des ressources et de leur chargement,
+,    Gestionnaire de rendu,,group
+v,        Forward rendering technique,Technique de rendu non optimisé en une seule phase,
+-,        Deffered rendering technique,"Technique de rendu optimisé dont les calculs sont séparés en plusieurs phases, permettant entre autres d'optimiser les lumières",
+-,        Multithread,Phases de rendu répartis sur plusieurs fils d'éxécution,
+-,        Tile-based Rendering,Optimisation de la pipeline pour les rendu sur plateformes mobiles,
+,    Camera,,group
+b,        Camera Libre,Camera qui est déplacé directement par l'utilisateur,
+-,        Spline Camera,Camera de déplacement automatique selon un ensemble de points,
+,    Écran,,group
+v,        Camera,"Creation facilitée de caméra, avec ses paramètres (profondeur de champ, position)",
+v,        Custom Viewports,Permet de définir une ou plusieurs zones de rendu sur l'écran,
+v,        Synchronisation d'affichage,Technique de permettant de synchroniser un flux vidéo et un système vidéo (un écran),
+-,        Contrôle du Gamma,Permet de modifier le contraste ,
+-,        Anti-Crénelage,"Réduction de l'effet ""escalier"" resultant d'un rendu 3D transposé sur un ecran 2D",
+,    Gestion de scènes,,group
+b,        Gestion des modèles GLTF 2.0,Import de modèles glTF2.0 via notre bibliothèque glTF2-loader,
+v,        Transformation,"Translation, rotation ou mise à l'échelle d'un objet dans l'espace",
+-,        Partitionnement de l'espace,Algorithme d'optimisation des calculs,
+,    Meshes,,group
+v,        Gestion de Meshes,,
+v,        Generation dynamique de mesh,,
+,    Lumières,,group
+b,        Lumière ambiante,Lumière qui émet de façon uniforme dans la scène,
+v,        Lumière directionnelle,Type de lumière directionnelle ayant un angle et une direction,
+v,"        Lumière ""Point""",Lumière qui émet dans toutes les directions à partir d'un point,
+v,"        Lumière ""Spot""",Lumière qui émet un cône dans une direction donnée,
+-,"        Lumière ""Area""",,
+,    Textures,,group
+b,        Chargement des textures,Importation de différent type de fichiers de textures (associé généralement à un modéle 3D),group
+-,        Compression des textures,Il existe plusieurs algorithme de compression de texture gérer coté GPU,
+-,        Mip map,Adaptation du niveau de détail des textures par rapport à la distance de l'objet et de la camera,
+,    Materiaux,"Surfaces avec différentes propriétés (couleur, brillance, réaction à la lumière...)",group
+v,        Couleur,Couleur de base du material,
+b,        Diffuse texture,Encodage de la propriété couleur d'un material dans une texture,
+b,        Metallic,PBR gestion de la proprieté metalique (ou non metalique) d'un material,
+b,        Roughness,PBR gestion de la capacité du material a refleter son environnement,
+b,        Metalic / Rougness mapping,Encodage des propriétés metallic & roughness d'un material dans une texture,
+v,        Normal,Normal des vertex d'un material,
+b,        Normal map,"Techniques de pertubations de la normal afin de donner du relief aux modèles 2D ou 3D, ou aux textures.",
+b,        Ambient occlusion map,Prise en compte de l'exposition du modèle dans la scène,
+b,        Emissive,"Materiau auto-éclairé, non-affecté par les lumières dans son environnement",
+b,        Emissive map,Encodage de l'emissive d'un material dans une texture,
+,    Effets,,group
+,        Mapping,,group
+-,            Parralax bump mapping,Technique avancé de pertubation de la normal,
+,        Shadow Mapping,"Gestion de different type d'ombre (statique, dynamique)",group
+-,            Shadow map,Technique qui permet d'ajouter des ombres précalculé à une scène. Ce qui permet de gagner en performance comparé aux ombres dynamique.,
+-,            Cascaded Shadow Maps,Ombres calculées au runtime,
+-,        Profondeur de champ de vision,Effet de la caméra pour simuler l'effet de focus d'une vraie caméra ,
+-,        Bloom,Effet qui donne l'impression d'un halo de lumière autour de sa source,
+b,        Skybox,Gestion de la texture du ciel,
+-,        High Dynamic Range (HDR),Gestion de nombreux niveaux d'intensité lumineuse,
+-,        Indirect Lighting,L'environnement influe sur les couleurs de l'objet,
+,    Gestionnaire 2D,Gestion simple des surfaces 2D,group
+,        Fonts,Chargement et affichage simplifié de polices d'écriture,group
+b,            Chargement de fonts,,
+b,"            Customisation de couleur, taille",,
+b,        Dessin 2D (HUD),Afichage d'un menu ou d'une interface,
+,    Optimisations,,group
+-,        Pipeline cache,Mise en cache de la pipeline 3D,
+-,        Tesselation,Technique qui permet d'ajouter du détail au mesh en ajoutant des vertices qui n'étaient pas présent dans le mesh de base,
+-,        Compute Shaders,,
+,,,
+,Bibliothèque math,Librairie de maths multi-plateforme,group
+v,    Vecteurs,Integration des vecteurs ,
+v,    Matrices,Integration des matrices,
+v,    Quaternions,Integration des outils de calculs pour quaternions,
+v,    Fonctions géométriques,,
+b,    Tests unitaires,Tests de validation du fonctionnement de la librairie mathématique,
+,,,
+,Bibliothèque système,,group
+v,    Fenêtres,"Gestion simplifiée des différents inputs (clavier, souris, manette...)",
+v,    Classe Application,Classe permettant à l'utilisateur de bootstrapper rapidement un programme ouvrant une fenêtre,
+,    Events,,group
+v,        Clavier,Gestion des evenements clavier,
+v,        Souris,Gestion des evenements souris,
+-,        Écran tactile,Gestion des evenements écran tactile,
+v,    Gestion des librairies partagées,"Chargement de librairies dynamiques multiplateformes (.dll, .so)",
+v,    Gestionnaire d'allocation mémoire,Gestion des outils d'allocation mémoire,
+v,        Basic,,
+v,        Linear,,
+v,        Stack,,
+-,        Tests unitaires,Tests de validation du fonctionnement du gestionnaire d'allocation mémoire,
+v,    Gestion de timer,Gestion du temps ,
+,    Tâches asynchrones,Gestion des tâches parrallèles,group
+-,        Threads pool,"Management tool for threading, optimisation",
+-,        Primitives de synchronisation,Read/Write Mutex,
+,    Gestion des erreurs,Uniformisation et journalisations des erreurs ,group
+v,"        Debug (assert, etc)","Outils de débug, tels que les asserts",
+v,        Journalisation des erreurs,"Outil de journalisation de messages d'informations et erreurs (logging), multiplateforme",
+v,        Uniformisation des erreurs / exceptions,"Système d'exceptions, utilisant le système de journalisation",
+v,        Tests unitaires des exceptions,Tests de validation du fonctionnement des exceptions,
+v,        Tests unitaires de la journalisation,Tests de validation du fonctionnement du Logger,
+,,,
+,glTF2-loader,Bibliothèque de chargement de modèles glTF 2.0,group
+,    Build process,Simplification du procédé de compilation multi-platforme,group
+v,        CMake,"Système de compilation disponible via CMake, permettant la compilation de manière automatisée sur Linux, Windows et Android",
+v,        CMake Find,Création d'outil utilitaires permettant la recherche et l'integration harmonieuse de nos bibliothèques,
+b,    Chargement de modèles au format json,Chargement de modèles au format json,
+-,    Chargement de modèles au format binaire,Chargement de modèles au format binaire,
+,    Chargement de textures,,group
+b,        PNG,Prise en charge des textures au format PNG,
+b,        JPG,Prise en charge des textures au format JPG,
+b,        TGA,Prise en charge des textures au format TGA,
+b,        BMP,Prise en charge des textures au format BMP,
+,,,
+,lugdunum-glTF2-convertor,Librairie et utilitaire de conversion de glTF 2.0 en un glTF 2.0 qui respecte les contraintes imposés par Lugdunum,group
+-,    Librairie,,
+-,    Exécutable,,
+,,,
+,Communication,,group
+b,    Site vitrine,Site faisant la liaison entre l'équipe de développement et les utilisateurs du moteur de jeu,
+-,    Dev-Blog,"Site de communication sur les verrous techniques rencontrés par l'équipe, et nos methodes de résolutions",
+,    Documentation,,group
+v,        Documentation Build Process,Documentation Build Process,
+v,        Documentation Technique,Documentation Technique,
+v,        Documentation Utilisateur,Documentation Utilisateur,
+,,,
+,LugBench,,group
+,    Backend,,group
+b,        RestAPI,RestAPI qui permet la communication entre la base de donnée et le site web / client LugBench,
+v,        Base de donnée (MongoDB),Base de donnée intégrant tous les résultats des tests lancés par les utilisateurs de LugBench,
+,    Frontend,,group
+b,        Site web de presentation des données,Site web permettant de récupérer les executables précompiler de LugBench et de visualiser les résultats,
+b,        Affichage sous forme de tableau,Affichage des tous les resultats de tests lancés par les utilisateurs de LugBench sous forme de tableau avec possibilité de tri des données,
+-,        Compte utilisateur,,
+,    Application,,group
+,        Build process,Simplification du procédé de compilation multi-platforme,group
+v,            CMake,"Système de compilation disponible via CMake, permettant la compilation de manière automatisée sur Linux, Windows et Android",
+v,            Third party integration,Création d'outil utilitaires permettant la recherche et l'integration harmonieuse de nos bibliothèques,
+b,            Script d'automatisation,Script automatisant la compilation des dépendances externes,
+b,        GUI de l'application,Partie graphique de l'application LugBench,
+v,        Récuperation des specs Vulkan,Récupération des toutes les données que Vulkan peut nous fournir à propos de la machine de l'utilisateur,
+b,        Exécution des scènes,Execution des scènes 3D avec notre moteur Lugdunum afin de benchmarker la machine de l'utilisateur,
+b,        Upload des specs utilisateur au serveur,Envoi au serveur LugBench des informations et resultats des test de la machine utilisateur via la RestAPI,
+-,        Détection Hardware,Detection des specs de la machine de l'utilisateur,
+-,    Intégration Phoronix Test Suite,Gestion du système autonomatisé de benchmarking de Phoronix ,
+b,    Génération de score,Génération d'un score en se basant sur les FPS obtenus lors de l'affichage de la scene,

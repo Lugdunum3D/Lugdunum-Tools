@@ -3,10 +3,11 @@
 \usepackage[french]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb,amsfonts,textcomp}
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames,table]{xcolor}
 \usepackage{float}
 \floatplacement{figure}{H}
 \usepackage{standalone}
+\usepackage{setspace}
 
 % Should help with weird line breaking (https://tex.stackexchange.com/a/141854/120111)
 \usepackage{microtype}
@@ -30,8 +31,6 @@
 
 % Break lines after ::
 \def\::{\discretionary{::}{}{::}}
-
-\usepackage{booktabs}
 
 \input{common/listing}
 
@@ -172,7 +171,7 @@
 \b{set tocdepth = 3}
 \b{endif}
 
-\etocsetnexttocdepth{section}
+\etocsetnexttocdepth{\v{tocdepth}}
 \tableofcontents
 
 \clearpage

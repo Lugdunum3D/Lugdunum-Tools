@@ -1,16 +1,22 @@
-name: '2018_beta_plan_lugdunum'
-name_formatted: '[2018][Beta][Plan] Lugdunum'
+name: '2018_beta_plan_final_lugdunum'
+name_formatted: '[2018][Plan Bêta Final] Lugdunum'
 template_file: common/template-fr.tex
-title: 'Plan de beta'
-version: '1.0'
+title: 'Plan de bêta'
+version: '2.0'
+tocdepth: 2
 accountant: Yoann Long
 abstract:
-- source: beta/abstract.md
+- type: 'content'
+  source: common/abstract-fr.md
 summary:
-- source: beta/summary.md
+- type: 'content'
+  source: beta/summary.md
 bodies:
-- source: common/eip-fr.md
-- source: beta/beta.md
+- type: 'content'
+  source: common/eip-fr.md
+- type: 'content'
+  source: beta/beta.md
+  url: https://hackmd.io/KYRgDAxg7BBGAmBaMZa0QFgGwg4gHCAExiIDMZArFrAIb5Yn61A=/download
 authors:
 - name: Yoann Long
 - name: Antoine Bolvy
@@ -32,3 +38,12 @@ history:
   modified_sections:
   - Toutes
   comment: 'Creation du document'
+- date: 2017-05-17
+  authors:
+  - Antoine Bolvy
+  - Yoann Long
+  - Quentin Buathier
+  version: '2.0'
+  modified_sections:
+  - Toutes
+  comment: 'Refonte du document pour la verson finale'
