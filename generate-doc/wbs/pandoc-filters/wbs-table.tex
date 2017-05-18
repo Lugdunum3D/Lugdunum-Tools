@@ -1,0 +1,20 @@
+\b{for counter, initial_value in counters}
+\setcounter{\v{counter}}{\v{initial_value}}
+\b{endfor}
+
+\small
+
+\renewcommand\arraystretch{1.2}
+
+\begin{spacing}{.9}
+\setlength\LTleft{-.5in}
+\setlength\LTright{-.5in}
+\rowcolors{2}{black!5}{white}
+\begin{tabularx}{1.15\linewidth}{@{}p{1.5cm} | p{6.5cm} X@{}}
+\toprule
+& \textbf{Nom} & \textbf{Description}\\\midrule\endhead
+\b{for line in lines}
+\v{line.data[0]} & \v{line.data[1]} & \v{line.data[2]}\\\v{'\\midrule' if line.type == 'last_of_group' else ''}
+\b{endfor}\bottomrule
+\end{tabularx}
+\end{spacing}
