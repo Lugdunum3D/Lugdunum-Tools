@@ -8,12 +8,15 @@ accountant: Yoann Long
 abstract:
 - type: 'content'
   source: common/abstract-fr.md
+  url: https://hackmd.io/GYYxBMAYGYEMFMC04UA5EBZoHYSIJzDT6LABGAjBQGyrA3ABM0QA/download
 summary:
 - type: 'content'
   source: beta/summary.md
+  url: https://hackmd.io/JwDgZgpgLARgTMAtAEwKwDY6NgRgOyLBhQAMi6UqcqUUAhjiHWEA/download
 bodies:
 - type: 'content'
   source: common/eip-fr.md
+  url: https://hackmd.io/IbAmEZQU3AmBacMCc8AswoDZ7IAzABm8ARgByiwlhRqF6xA=/download
 - type: 'content'
   source: beta/beta.md
   url: https://hackmd.io/KYRgDAxg7BBGAmBaMZa0QFgGwg4gHCAExiIDMZArFrAIb5Yn61A=/download
