@@ -6,8 +6,9 @@ Shift header level
 
 __author__ = "Antoine Bolvy"
 
-from panflute import run_filter, Note, Link, Para, Str
+from panflute import run_filter, Note, Link, Para, Str, Space, RawInline
 import sys
+from utils import stringify
 
 def links_to_footnotes(elem, doc):
     """
@@ -19,7 +20,7 @@ def links_to_footnotes(elem, doc):
             return
         if elem.url.startswith('mailto:'):
             return
-        return [elem, Note(Para(Link(Str(elem.url), title=elem.title, url=elem.url)))]
+        return [elem, Note(Para(RawInline(stringify(elem), format='tex'), Str(':'), Space(), Link(Str(elem.url), title=elem.title, url=elem.url)))]
 
 def main(doc=None):
     """
