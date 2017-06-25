@@ -62,7 +62,7 @@ def main():
                               discoveryServiceUrl=discoveryUrl)
 
     spreadsheetId = '11wDVLMhEuA_0MBvOsR_ueZGFcK4v5IdYZ-k6nW4Wleg'
-    rangeName = 'Features!A:D'  # from A to D
+    rangeName = 'Features!A:E'  # from A to E
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
@@ -71,7 +71,7 @@ def main():
         print('No data found.')
     else:
         for i, line in enumerate(values):
-            values[i] += [''] * (4 - len(line))
+            values[i] += [''] * (5 - len(line))
         import csv
         with open('features.csv', 'w') as csvfile:
             spamwriter = csv.writer(csvfile)

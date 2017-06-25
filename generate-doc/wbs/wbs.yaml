@@ -7,15 +7,18 @@ accountant: Yoann Long
 abstract:
 - type: content
   source: common/abstract-fr.md
+  url: https://hackmd.io/GYYxBMAYGYEMFMC04UA5EBZoHYSIJzDT6LABGAjBQGyrA3ABM0QA/download
 summary:
 - type: content
-  url: https://hackmd.io/EYZgHAJgbArADBAtAdgGYQCyI8gTAY0WBmGW2RGWAE44BDfZGEIA/download
   source: wbs/summary.md
+  url: https://hackmd.io/EYZgHAJgbArADBAtAdgGYQCyI8gTAY0WBmGW2RGWAE44BDfZGEIA/download
 bodies:
 - type: content
   source: common/eip-fr.md
+  url: https://hackmd.io/IbAmEZQU3AmBacMCc8AswoDZ7IAzABm8ARgByiwlhRqF6xA=/download
 - type: content
   source: wbs/wbs.md
+  url: https://hackmd.io/KwdgZgJhBMDMEFoBGTIICwgBwGMEE59oBTDaYfEARgAYrYl1og==/download
   wbs: true
 authors:
 - name: Yoann Long
@@ -109,4 +112,12 @@ history:
   modified_sections:
   - Toutes
   comment: Mise à jour du dictionnaire complet pour WBS5
+- date: 2017-05-27
+  authors:
+  - Yoann Long
+  - Antoine Bolvy
+  version: 3.1
+  modified_sections:
+  - Dictionnaire
+  comment: Ajout des pourcentages
 

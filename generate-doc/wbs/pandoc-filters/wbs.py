@@ -87,6 +87,19 @@ class WBSTree(object):
 
         _print(self.tree, self.level)
 
+    def get_completed(self, subtree=None):
+        if not subtree:
+            subtree = self.tree
+
+        def _get_completed(tree):
+            avg_values = []
+            if not len(tree['children']):
+                return tree['percentage']
+            for child in tree['children']:
+                avg_values.append(_get_completed(child))
+            return sum(avg_values) / len(avg_values)
+        return _get_completed(subtree)
+
     def parse_tree(self, source, root_name):
         with open(source) as csv_f:
             reader = csv.reader(csv_f)
@@ -95,6 +108,7 @@ class WBSTree(object):
             lines = []
             self.tree = {
                 'level': 0,
+                'percentage': 0,
                 'name': root_name,
                 'desc': '',
                 'type': '',
@@ -105,14 +119,16 @@ class WBSTree(object):
                 if not ''.join(line).strip():  # empty line means last section ends
                     levels[-1]['type'] = 'last_of_group'
                     continue
-                level = line[1].count("    ") + 1
+                level = line[2].count("    ") + 1
                 node = {
                     'level': level,
-                    'name': line[1].strip(),
-                    'desc': line[2],
-                    'type': line[3],
+                    'percentage': int(line[1]) if line[1] is not '' else 0,
+                    'name': line[2].strip(),
+                    'desc': line[3],
+                    'type': line[4],
                     'children': []
                 }
+                print(line[4], file=sys.stderr)
                 # print(level, len(levels) - 1, level == len(levels) - 1, level > len(levels) - 1, node['name'])
                 # print(levels)
                 if level == len(levels) - 1:
@@ -253,6 +269,7 @@ class WBSTree(object):
                     'type': tree['type'],
                     'data': [
                         "\\stepcounter{" + counter + "}" + _gen_counter(level),
+                        str(int(self.get_completed(tree))) + "\\%",
                         "\\parshape 1 " + str(level - 1) + "em \\dimexpr\\linewidth-" + str(level - 1) + "em\\relax " + value,
                         tex_escape(tree['desc'])
                     ]
