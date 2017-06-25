@@ -1,0 +1,79 @@
+name: '2018_CDC3_lugdunum'
+name_formatted: '[2018][CDC3] Lugdunum'
+template_file: common/template-fr.tex
+title: 'Cahier des charges n°3'
+version: '3.0'
+tocdepth: 2
+accountant: Yoann Long
+abstract:
+- type: 'content'
+  source: common/abstract-fr.md
+  url: https://hackmd.io/GYYxBMAYGYEMFMC04UA5EBZoHYSIJzDT6LABGAjBQGyrA3ABM0QA/download
+summary:
+- type: 'content'
+  source: cdc/summary.md
+  url: https://hackmd.io/EYBgnAJsCMCsDGBaAhmA7MxAWZAmApigGxhiIDMuAZmlsLiLmkbkA===/download
+bodies:
+- type: 'content'
+  source: common/eip-fr.md
+  url: https://hackmd.io/IbAmEZQU3AmBacMCc8AswoDZ7IAzABm8ARgByiwlhRqF6xA=/download
+- type: 'content'
+  source: common/principe-base-futur-fr.md
+  url: https://hackmd.io/BwUxBMEME4CMBYC0xwko+BjEBWR0B2AJgAZEQDgBGAMxBMhxJFiA/download
+- type: 'content'
+  source: cdc/cdc.md
+  url: https://hackmd.io/OwMwLAjAHARgbBAtMATAYzYsBmGmCGcMArIsRNgJxxzYAMcxw+QA/download
+authors:
+- name: Yoann Long
+- name: Antoine Bolvy
+- name: Quentin Buathier
+- name: Guillaume Labey
+- name: Stuart Sulaski
+- name: Corentin Chardeau
+- name: Nicolas Comte
+- name: Alexandre Quivy
+- name: Guillaume Sabatié
+history:
+- date: 2016-06-06
+  authors:
+  - Yoann Long
+  version: 1.0
+  modified_sections:
+  - \-
+  comment: Creation du document
+- date: 2016-06-06
+  authors:
+  - Yoann Long
+  - Quentin Buathier
+  - Antoine Bolvy
+  - Guillaume Sabatié
+  - Guillaume Labey
+  - Corentin Chardeau
+  version: 1.1
+  modified_sections:
+  - Toutes
+  comment: Première version
+- date: 2016-07-01
+  authors:
+  - Stuart Sulaski
+  version: 2.0
+  modified_sections:
+  - Partie 2
+  comment: Ajout d’un schema, ajout de contenu
+- date: 2016-07-01
+  authors:
+  - Quentin Buathier
+  version: 2.1
+  modified_sections:
+  - Partie 3
+  - Partie 4
+  comment: 'Première version'
+- date: 2017-05-27
+  authors:
+  - Antoine Bolvy
+  - Yoann Long
+  - Corentin Chardeau
+  version: 3.0
+  modified_sections:
+  - Toutes
+  comment: Refonte du cahier des charges afin de mieux correspondre aux changements des objectifs
