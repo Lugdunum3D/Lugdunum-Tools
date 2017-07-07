@@ -1,5 +1,9 @@
 ---
-title: Contributing
+title: Contributing to Lugdunum
+menu:
+- title: Documentation
+  href: /doc
+  class: documentation button button-green align-right
 ---
 
 # Contributing to Lugdunum

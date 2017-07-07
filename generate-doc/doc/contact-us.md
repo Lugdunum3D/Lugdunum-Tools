@@ -1,5 +1,9 @@
 ---
 title: Contact us
+menu:
+- title: Documentation
+  href: /doc
+  class: documentation button button-green align-right
 ---
 
 # Contact us
