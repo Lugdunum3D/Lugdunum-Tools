@@ -26,7 +26,7 @@ bodies:
 - type: chapter
   title: Lugbench
 - type: content
-  source: doc/build-lugbench.md
+  source: doc/lugbench-build.md
   url: https://hackmd.io/BzAmDME5gZgJgLSQKalAgLJOB2JdhEBjABjgFYA2Ig5ARgENKg==/download
 authors:
 - name: Yoann Long
