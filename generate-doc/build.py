@@ -12,6 +12,7 @@ import re
 import logging
 import subprocess
 import hashlib
+import shutil
 import errno
 import argparse
 
@@ -108,8 +109,6 @@ class Build(object):
         with open(self.args.config) as config_file:
             self.config = yaml.load(config_file)
 
-        self.template = LATEX_JINJA_ENV.get_template(self.config['template_file'])
-
     def parse_args(self):
         """
         Parse the commandline arguments
@@ -146,18 +145,50 @@ class Build(object):
             print(err_msg, file=sys.stderr)
             raise Exception('Error')
 
+    def get_file_extension(self):
+        if self.config['type'] == 'website':
+            return '.md'
+        return '.tex'
+
+    def generate_file_name(self, source_file):
+        source_hash = hashlib.md5(open(source_file, 'rb').read()).hexdigest()
+        hash_prefix = source_hash[:8] + '_'
+        job_name = os.path.splitext(os.path.basename(source_file))[0]
+        target_file_name = os.path.join(OUT_FOLDER, hash_prefix + job_name) + self.get_file_extension()
+        return job_name, hash_prefix, target_file_name
+
+    def get_type(self):
+        if self.config['type'] == 'website':
+            return 'markdown' + \
+                '-simple_tables' + \
+                '-grid_tables' + \
+                '-multiline_tables' + \
+                '-inline_code_attributes' + \
+                '-fenced_code_attributes' + \
+                '+pipe_tables' + \
+                '+raw_html' + \
+                '+yaml_metadata_block' + \
+                '+fenced_code_blocks' + \
+                '+auto_identifiers' + \
+                '+ascii_identifiers' + \
+                '+backtick_code_blocks' + \
+                '+autolink_bare_uris' + \
+                '+intraword_underscores' + \
+                '+strikeout' + \
+                '+hard_line_breaks' + \
+                '+emoji' + \
+                '+shortcut_reference_links' + \
+                '+angle_brackets_escapable'
+        return 'latex'
+
     def pandoc_file(self, file_config):
         """
-        Run pandoc with our filters on a part of a file, store the tex output in a temp dir,
-        and its path in file_config['generated']
+        Run pandoc with our filters on a part of a file, store the tex output in a temp dir
         """
-        source_hash = hashlib.md5(open(file_config['source'], 'rb').read()).hexdigest()
-        hash_prefix = source_hash[:8] + '_'
-        file_config['job_name'] = os.path.splitext(os.path.basename(file_config['source']))[0]
-        target_file_name = os.path.join(OUT_FOLDER, hash_prefix + file_config['job_name'])
+        file_config['job_name'], hash_prefix, target_file_name = self.generate_file_name(file_config['source'])
         file_config['generated'] = target_file_name
 
-        if os.path.isfile(target_file_name + '.tex') and not self.args.nocache:
+        if os.path.isfile(target_file_name) and not self.args.nocache:
             logging.info('Cache exists for %s', file_config['source'])
             return
 
@@ -171,13 +202,17 @@ class Build(object):
             '--filter=./pandoc-filters/pandoc-github-img.py',
             '--filter=./pandoc-filters/pandoc-dl-images.py',
             '--filter=./pandoc-filters/pandoc-mermaid.py',
-            '--filter=./pandoc-filters/pandoc-svg.py',
             '--filter=./pandoc-filters/pandoc-graphviz.py',
-            '--filter=./pandoc-filters/pandoc-header-images-to-latex.py',
             '--filter=./pandoc-filters/pandoc-generate-doxylinks.py',
             '--filter=./pandoc-filters/pandoc-alerts.py',
             '--filter=./pandoc-filters/pandoc-add-captions.py',
         ]
+
+        if self.config['type'] != 'website':
+            cmd += [
+                '--filter=./pandoc-filters/pandoc-svg-to-any.py',
+                '--filter=./pandoc-filters/pandoc-header-images-to-latex.py',
+            ]
 
         if 'header_shift' in file_config and file_config['header_shift']: # also check if not 0
             logging.info('Header shift %s', file_config['header_shift'])
@@ -192,12 +227,28 @@ class Build(object):
                 '--filter=./wbs/pandoc-filters/wbs.py'
             ]
 
+
+        if self.config['type'] == 'website':
+            cmd += [
+                '--filter=./pandoc-filters/pandoc-pdf-to-svg.py',
+                '--filter=./pandoc-filters/pandoc-assets.py',
+                '--filter=./pandoc-filters/pandoc-image-to-html.py',
+                '--filter=./pandoc-filters/pandoc-latex-to-md.py',
+                '--no-highlight',
+                '--toc',
+                '--template=template.md',
+                '--standalone',
+            ]
+
         cmd += [
             '--listings',
-            '--to=latex',
-            '--output=' + target_file_name + '.tex',
+            '--atx-headers',
+            '--to=' + self.get_type(),
+            '--output=' + target_file_name,
             file_config['source'],
         ]
+
+        # print(' '.join(cmd))
 
         logging.debug(' '.join(cmd))
         pipes = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -218,17 +269,29 @@ class Build(object):
         """
         make_sure_path_exists(OUT_FOLDER)
 
+        if self.config['type'] == 'website':
+            make_sure_path_exists(self.config['out_folder'])
+
+
         for file in self.config['bodies']:
             if file['type'] == 'content':
                 self.pandoc_file(file)
+                if self.config['type'] == 'website':
+                    shutil.copyfile(file['generated'], os.path.join(self.config['out_folder'], os.path.basename(file['source'])))
+
+        if self.config['type'] == 'website':
+            return
+
         for file in self.config['abstract']:
             self.pandoc_file(file)
         for file in self.config['summary']:
             self.pandoc_file(file)
 
+        template = LATEX_JINJA_ENV.get_template(self.config['template_file'])
+
         logging.info('Rendering template')
-        out = self.template.render(**self.config)
-        with open(self.config['name'] + '.tex', 'w') as file:
+        out = template.render(**self.config)
+        with open(self.config['name'] + self.get_file_extension(), 'w') as file:
             file.write(out)
 
         if not self.args.pandoc:

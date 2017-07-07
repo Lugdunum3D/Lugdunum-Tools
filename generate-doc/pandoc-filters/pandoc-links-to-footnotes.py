@@ -15,6 +15,9 @@ def links_to_footnotes(elem, doc):
     Will shift a header level from the filter-header-shift
     metadata value (which must exist)
     """
+    if doc.format != 'latex':
+        return
+
     if isinstance(elem, Link):
         if elem.url.startswith('#'):
             return

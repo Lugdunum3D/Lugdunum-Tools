@@ -19,10 +19,11 @@ from panflute import run_filter, Image, Str, RawInline
 import lxml.html as html
 import tinycss
 
-def html_img_to_image(elem, _):
+def html_img_to_image(elem, doc):
     """
     Apply the translations, see module doc
     """
+
     # We are only interested in "raw_html" elements
     if not isinstance(elem, RawInline) or elem.format != 'html':
         return

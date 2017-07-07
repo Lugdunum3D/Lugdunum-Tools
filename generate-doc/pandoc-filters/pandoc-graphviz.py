@@ -10,6 +10,7 @@ import hashlib
 import os
 import sys
 import pygraphviz
+import subprocess
 from panflute import toJSONFilter, Para, Str, Image, CodeBlock
 
 IMAGE_DIR = "graphviz-images"
@@ -30,9 +31,10 @@ def graphviz(elem, doc):
         code = elem.text
         graph = pygraphviz.AGraph(string=code)
         title = graph.graph_attr.pop('label', '')
+        # graph.graph_attr.update(margin=0)
         graph.layout()
         filename = md5(code)
-        filetype = {'html': 'png', 'latex': 'pdf'}.get(doc.format, 'png')
+        filetype = {'html': 'png', 'latex': 'pdf'}.get(doc.format, 'pdf')
         src = IMAGE_DIR + '/' + filename + '.' + filetype
         if not os.path.isfile(src):
             try:

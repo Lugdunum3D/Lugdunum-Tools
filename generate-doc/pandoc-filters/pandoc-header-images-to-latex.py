@@ -63,10 +63,11 @@ def generate_latex_header(elem, stringified):
         stringify(elem)
     ), format='tex')
 
-def header_img_to_latex(elem, _):
+def header_img_to_latex(elem, doc):
     """
     Convert Header -> LaTeX RawInline
     """
+
     if isinstance(elem, Header):
         modified = False
         # Will contain the elements without the Images, replaced by LaTeX RawInlines

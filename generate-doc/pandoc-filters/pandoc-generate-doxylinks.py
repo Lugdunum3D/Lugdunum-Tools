@@ -63,7 +63,7 @@ def doxylink(elem, _):
     res = re.match(r'^\#(lug(?:\:\:[\w]+)+?)(\:\:[\w]+\(\))?$', elem.url)
 
     if res:
-        elem.url = 'https://lugdunum3d.github.io/docs/class' + doxymangle(res.group(1)) + '.html'
+        elem.url = 'https://lugdunum3d.github.io/doc/doxygen/class' + doxymangle(res.group(1)) + '.html'
 
 
 def main(doc=None):

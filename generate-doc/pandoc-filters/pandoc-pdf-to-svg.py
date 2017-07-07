@@ -1,12 +1,9 @@
 #! /usr/bin/env python
 """
-Pandoc filter to convert svg files to pdf as suggested at:
-https://github.com/jgm/pandoc/issues/265#issuecomment-27317316
-
-Adapted to panflute by Antoine Bolvy
+Pandoc filter to convert pdf files to svg
 """
 
-__author__ = "Jerome Robert, Antoine Bolvy"
+__author__ = "Antoine Bolvy"
 
 import mimetypes
 import subprocess
@@ -15,18 +12,10 @@ import sys
 from panflute import run_filter, Image
 from utils import is_valid_url
 
-FMT_OPTIONS = {
-    "latex": ("--export-pdf", "pdf"),
-    "beamer": ("--export-pdf", "pdf"),
-    # Use PNG because EMF and WMF break transparency
-    "docx": ("--export-png", "png"),
-    # Because of IE
-    "html": ("--export-png", "png")
-}
 
-def svg_to_any(elem, doc):
+def pdf_to_svg(elem, doc):
     """
-    Convert a svg to supported formats
+    Convert a pdf to svg
     """
     if not isinstance(elem, Image):
         return
@@ -36,8 +25,8 @@ def svg_to_any(elem, doc):
         return
 
     mimet, _ = mimetypes.guess_type(elem.url)
-    flag, file_ext = FMT_OPTIONS.get(doc.format)
-    if mimet == 'image/svg+xml' and flag:
+    flag, file_ext = ('--export-plain-svg', 'svg')
+    if mimet == 'application/pdf' and flag:
         base_name, _ = os.path.splitext(elem.url)
         target_name = base_name + "." + file_ext
         try:
@@ -54,7 +43,7 @@ def main(doc=None):
     """
     Run the fitler
     """
-    return run_filter(svg_to_any, doc=doc)
+    return run_filter(pdf_to_svg, doc=doc)
 
 if __name__ == "__main__":
     main()
