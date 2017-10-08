@@ -87,14 +87,14 @@ class WBSTree(object):
 
         _print(self.tree, self.level)
 
-    def get_completed(self, subtree=None):
+    def get_completed(self, percentage_key, subtree=None):
         if not subtree:
             subtree = self.tree
 
         def _get_completed(tree):
             avg_values = []
             if not len(tree['children']):
-                return tree['percentage']
+                return tree[percentage_key]
             for child in tree['children']:
                 avg_values.append(_get_completed(child))
             return sum(avg_values) / len(avg_values)
@@ -108,6 +108,7 @@ class WBSTree(object):
             lines = []
             self.tree = {
                 'level': 0,
+                'old_percentage': 0,
                 'percentage': 0,
                 'name': root_name,
                 'desc': '',
@@ -122,13 +123,14 @@ class WBSTree(object):
                 level = line[2].count("    ") + 1
                 node = {
                     'level': level,
+                    'old_percentage': int(line[0]) if line[0] is not '' else 0,
                     'percentage': int(line[1]) if line[1] is not '' else 0,
                     'name': line[2].strip(),
                     'desc': line[3],
                     'type': line[4],
                     'children': []
                 }
-                print(line[4], file=sys.stderr)
+                # print(line[5], file=sys.stderr)
                 # print(level, len(levels) - 1, level == len(levels) - 1, level > len(levels) - 1, node['name'])
                 # print(levels)
                 if level == len(levels) - 1:
@@ -220,7 +222,7 @@ class WBSTree(object):
             if not len(tree['children']) or (level > config['limit'] and config['limit'] != -1):  # level limit
                 out.write("]\n")
             else:
-                print(level, config['limit'], file=sys.stderr)
+                # print(level, config['limit'], file=sys.stderr)
                 out.write("\n")
                 for child in tree['children']:
                     if level == self.level and 'show' in config and child['name'] not in config['show']:  # if is hidden
@@ -269,9 +271,10 @@ class WBSTree(object):
                     'type': tree['type'],
                     'data': [
                         "\\stepcounter{" + counter + "}" + _gen_counter(level),
-                        str(int(self.get_completed(tree))) + "\\%",
+                        str(int(self.get_completed('old_percentage', tree))) + "\\%",
+                        str(int(self.get_completed('percentage', tree))) + "\\%",
                         "\\parshape 1 " + str(level - 1) + "em \\dimexpr\\linewidth-" + str(level - 1) + "em\\relax " + value,
-                        tex_escape(tree['desc'])
+                        tex_escape(tree['desc']),
                     ]
                 })
 
@@ -292,7 +295,15 @@ class WBSTree(object):
 
         # print(lines, file=sys.stderr)
 
-        return template.render(lines=lines, counters=self.generate_initial_values(doc, counter_prefix, max_level))
+        header = [
+            '',
+            '% Pas.',
+            '% Act.',
+            'Nom',
+            'Description',
+        ]
+
+        return template.render(lines=lines, header=header, counters=self.generate_initial_values(doc, counter_prefix, max_level))
 
 def prepare(doc):
     """

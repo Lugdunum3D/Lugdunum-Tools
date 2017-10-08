@@ -62,7 +62,7 @@ def main():
                               discoveryServiceUrl=discoveryUrl)
 
     spreadsheetId = '11wDVLMhEuA_0MBvOsR_ueZGFcK4v5IdYZ-k6nW4Wleg'
-    rangeName = 'Features!A:E'  # from A to E
+    rangeName = 'Features!B:F'  # from B to F
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])

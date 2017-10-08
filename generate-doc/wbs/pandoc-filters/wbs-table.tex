@@ -2,6 +2,13 @@
 \setcounter{\v{counter}}{\v{initial_value}}
 \b{endfor}
 
+\b{macro table_line(line, header=False, safe=False)-}
+\b{for value in line}
+\v{'\\textbf{' if header else ''}\v{value if safe else value|texesc}\v{'}' if header else ''}\b{if not loop.last} & \b{else} \\\v{'\midrule\endhead' if header else ''}
+\b{endif}
+\b{endfor}
+\b{- endmacro}
+
 \small
 
 \renewcommand\arraystretch{1.2}
@@ -10,11 +17,11 @@
 \setlength\LTleft{-.5in}
 \setlength\LTright{-.5in}
 \rowcolors{2}{black!5}{white}
-\begin{tabularx}{1.15\linewidth}{@{}p{1.5cm} | p{0.8cm} | p{6cm} X@{}}
+\begin{tabularx}{1.15\linewidth}{@{}p{1.5cm} | p{1.1cm} | p{1.1cm} | p{6cm} X@{}}
 \toprule
-& \textbf{\%} & \textbf{Nom} & \textbf{Description}\\\midrule\endhead
+\v{table_line(header, header=True)}
 \b{for line in lines}
-\v{line.data[0]} & \v{line.data[1]} & \v{line.data[2]} & \v{line.data[3]}\\\v{'\\midrule' if line.type == 'last_of_group' else ''}
+\v{table_line(line.data, safe=True)}\v{'\\midrule' if line.type == 'last_of_group' else ''}
 \b{endfor}\bottomrule
 \end{tabularx}
 \end{spacing}
