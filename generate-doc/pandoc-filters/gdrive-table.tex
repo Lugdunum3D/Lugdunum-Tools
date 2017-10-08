@@ -1,0 +1,22 @@
+\b{macro table_line(line, header=False, safe=False)-}
+\b{for value in line}
+\v{'\textbf{' if header else ''}\v{value if safe else value|texesc}\v{'}' if header else ''}\b{if not loop.last} & \b{else} \\\v{'\midrule\endhead' if header else ''}
+\b{endif}
+\b{endfor}
+\b{- endmacro}
+
+\small
+
+\renewcommand\arraystretch{1.2}
+
+\begin{spacing}{.9}
+\setlength\LTleft{-.5in}
+\setlength\LTright{-.5in}
+\rowcolors{2}{black!5}{white}
+\begin{tabularx}{1.15\linewidth}{\v{columns_format}}
+\toprule
+\v{table_line(lines[0])}
+\midrule
+\b{for line in lines[1:]}\v{table_line(line)}\b{endfor}\bottomrule
+\end{tabularx}
+\end{spacing}

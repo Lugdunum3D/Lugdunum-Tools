@@ -206,6 +206,7 @@ class Build(object):
             '--filter=./pandoc-filters/pandoc-generate-doxylinks.py',
             '--filter=./pandoc-filters/pandoc-alerts.py',
             '--filter=./pandoc-filters/pandoc-add-captions.py',
+            '--filter=./pandoc-filters/pandoc-google-drive.py'
         ]
 
         if self.config['type'] != 'website':

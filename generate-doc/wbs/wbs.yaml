@@ -1,8 +1,9 @@
-name: 2018_WBS5_lugdunum
-name_formatted: '[2018][WBS5] Lugdunum'
+name: 2018_PLD_lugdunum_201710KO
+type: pdf
+name_formatted: '[2018][PLD][201710KO] Lugdunum'
 template_file: common/template-fr.tex
-title: 'Structure de Découpage du Projet'
-version: '3.1'
+title: 'Project Log Document'
+version: '4.0'
 accountant: Yoann Long
 abstract:
 - type: content
@@ -20,6 +21,8 @@ bodies:
   source: wbs/wbs.md
   url: https://hackmd.io/KwdgZgJhBMDMEFoBGTIICwgBwGMEE59oBTDaYfEARgAYrYl1og==/download
   wbs: true
+- type: content
+  source: wbs/feature-annex.md
 authors:
 - name: Yoann Long
 - name: Antoine Bolvy
@@ -120,4 +123,14 @@ history:
   modified_sections:
   - Dictionnaire
   comment: Ajout des pourcentages
+- date: 2017-10-08
+  authors:
+  - Antoine Bolvy
+  - Guillaume Labey
+  - Corentin Chardeau
+  - Nicolas Comte
+  version: 4.0
+  modified_sections:
+  - Toutes
+  comment: Mise à jour des pourcentages, ajout des tâches annexes.
 
