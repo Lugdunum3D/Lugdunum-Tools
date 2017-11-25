@@ -4,8 +4,8 @@
 
 ```google-drive
 type: spreadsheet
-doc_id: 1pQthIH4KIoRZ7Kuej-axZx2H-ff3PCtyscU0qTHPjUs
+doc_id: 10LpcOuaigSnbxFKz5n6xyB5G3ZfVDoAFQI_-MDigM3w
 range: Sheet1!A:F
-columns_format: '@{}X | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm}@{}'
+columns_format: '@{}X | p{2.5cm} | p{2.5cm} | p{2cm} | p{1.2cm} | p{1.8cm}@{}'
 ```
 

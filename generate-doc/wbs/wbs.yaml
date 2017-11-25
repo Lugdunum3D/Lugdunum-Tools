@@ -1,9 +1,9 @@
-name: 2018_PLD_lugdunum_201710KO
+name: 2018_PLD_lugdunum_201711FU
 type: pdf
-name_formatted: '[2018][PLD][201710KO] Lugdunum'
+name_formatted: '[2018][PLD][201711FU] Lugdunum'
 template_file: common/template-fr.tex
 title: 'Project Log Document'
-version: '4.0'
+version: '4.1'
 accountant: Yoann Long
 abstract:
 - type: content
@@ -133,4 +133,11 @@ history:
   modified_sections:
   - Toutes
   comment: Mise à jour des pourcentages, ajout des tâches annexes.
+- date: 2017-11-05
+  authors:
+  - Antoine Bolvy
+  version: 4.1
+  modified_sections:
+  - Toutes
+  comment: Mise à jour des pourcentages et des tâches annexes pour le PLD de novembre.
 

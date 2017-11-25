@@ -31,9 +31,9 @@
 100,100,        Custom Viewports,Permet de définir une ou plusieurs zones de rendu sur l'écran,
 100,100,        Synchronisation d'affichage,Technique de permettant de synchroniser un flux vidéo et un système vidéo (un écran),
 0,0,        Contrôle du Gamma,Permet de modifier le contraste ,
-0,0,        Anti-Crénelage,"Réduction de l'effet ""escalier"" resultant d'un rendu 3D transposé sur un ecran 2D",
+0,75,        Anti-Crénelage,"Réduction de l'effet ""escalier"" resultant d'un rendu 3D transposé sur un ecran 2D",
 ,,    Gestion de scènes,,group
-80,95,        Gestion des modèles GLTF 2.0,Import de modèles glTF2.0 via notre bibliothèque glTF2-loader,
+95,95,        Gestion des modèles GLTF 2.0,Import de modèles glTF2.0 via notre bibliothèque glTF2-loader,
 100,100,        Transformation,"Translation, rotation ou mise à l'échelle d'un objet dans l'espace",
 0,0,        Partitionnement de l'espace,Algorithme d'optimisation des calculs,
 ,,    Meshes,,group
@@ -68,9 +68,9 @@
 0,0,            Cascaded Shadow Maps,Ombres calculées au runtime,
 0,0,        Profondeur de champ de vision,Effet de la caméra pour simuler l'effet de focus d'une vraie caméra ,
 0,0,        Bloom,Effet qui donne l'impression d'un halo de lumière autour de sa source,
-0,100,        Skybox,Gestion de la texture du ciel,
-0,0,        High Dynamic Range (HDR),Gestion de nombreux niveaux d'intensité lumineuse,
-0,0,        Indirect Lighting,L'environnement influe sur les couleurs de l'objet,
+100,100,        Skybox,Gestion de la texture du ciel,
+0,50,        High Dynamic Range (HDR),Gestion de nombreux niveaux d'intensité lumineuse,
+0,90,        Indirect Lighting,L'environnement influe sur les couleurs de l'objet,
 ,,    Gestionnaire 2D,Gestion simple des surfaces 2D,group
 ,,        Fonts,Chargement et affichage simplifié de polices d'écriture,group
 100,100,            Chargement de fonts,,
@@ -94,7 +94,7 @@
 ,,    Events,,group
 100,100,        Clavier,Gestion des evenements clavier,
 100,100,        Souris,Gestion des evenements souris,
-0,50,        Écran tactile,Gestion des evenements écran tactile,
+50,60,        Écran tactile,Gestion des evenements écran tactile,
 100,100,    Gestion des librairies partagées,"Chargement de librairies dynamiques multiplateformes (.dll, .so)",
 ,,    Gestionnaire d'allocation mémoire,Gestion des outils d'allocation mémoire,
 100,100,        Basic,,
@@ -116,7 +116,7 @@
 ,,    Build process,Simplification du procédé de compilation multi-platforme,group
 100,100,        CMake,"Système de compilation disponible via CMake, permettant la compilation de manière automatisée sur Linux, Windows et Android",
 100,100,        CMake Find,Création d'outil utilitaires permettant la recherche et l'integration harmonieuse de nos bibliothèques,
-50,95,    Chargement de modèles au format json,Chargement de modèles au format json,
+95,95,    Chargement de modèles au format json,Chargement de modèles au format json,
 0,0,    Chargement de modèles au format binaire,Chargement de modèles au format binaire,
 ,,    Chargement de textures,,group
 100,100,        PNG,Prise en charge des textures au format PNG,
@@ -138,17 +138,18 @@
 ,,,,
 ,,LugBench,,group
 ,,    Backend,,group
-90,100,        RestAPI,RestAPI qui permet la communication entre la base de donnée et le site web / client LugBench,
+100,100,        RestAPI,RestAPI qui permet la communication entre la base de donnée et le site web / client LugBench,
 100,100,        Base de donnée (MongoDB),Base de donnée intégrant tous les résultats des tests lancés par les utilisateurs de LugBench,
 ,,    Frontend,,group
-40,40,        Site web de presentation des données,Site web permettant de récupérer les executables précompiler de LugBench et de visualiser les résultats,
-80,80,        Affichage sous forme de tableau,Affichage des tous les resultats de tests lancés par les utilisateurs de LugBench sous forme de tableau avec possibilité de tri des données,
+40,90,        Site web de presentation des données,Site web permettant de récupérer les executables précompiler de LugBench et de visualiser les résultats,
+80,90,        Affichage sous forme de tableau,Affichage des tous les resultats de tests lancés par les utilisateurs de LugBench sous forme de tableau avec possibilité de tri des données,
 0,0,        Compte utilisateur,,
+,,    Application,,group
 ,,        Build process,Simplification du procédé de compilation multi-platforme,group
 100,100,            CMake,"Système de compilation disponible via CMake, permettant la compilation de manière automatisée sur Linux, Windows et Android",
 100,100,            Third party integration,Création d'outil utilitaires permettant la recherche et l'integration harmonieuse de nos bibliothèques,
-45,45,            Script d'automatisation,Script automatisant la compilation des dépendances externes,
-80,80,        GUI de l'application,Partie graphique de l'application LugBench,
+45,100,            Script d'automatisation,Script automatisant la compilation des dépendances externes,
+80,90,        GUI de l'application,Partie graphique de l'application LugBench,
 100,100,        Récuperation des specs Vulkan,Récupération des toutes les données que Vulkan peut nous fournir à propos de la machine de l'utilisateur,
 90,90,        Exécution des scènes,Execution des scènes 3D avec notre moteur Lugdunum afin de benchmarker la machine de l'utilisateur,
 90,90,        Upload des specs utilisateur au serveur,Envoi au serveur LugBench des informations et resultats des test de la machine utilisateur via la RestAPI,
