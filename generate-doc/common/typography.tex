@@ -1,0 +1,10 @@
+\usepackage[no-math]{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont[Path=fonts/lato/,Color=primary,BoldItalicFont=Lato-BoldItalic,BoldFont=Lato-Bold,ItalicFont=Lato-Italic]{Lato-Regular}
+\setsansfont[Path=fonts/lato/,Color=primary,BoldItalicFont=Lato-BoldItalic,BoldFont=Lato-Bold,ItalicFont=Lato-Italic]{Lato-Regular}
+\setmonofont[Path=fonts/deja-vu/,Scale=MatchLowercase,Ligatures=TeX]{DejaVuSansMono}
+\newcommand{\fontmonoinline}{\fontspec[Path=fonts/deja-vu/,Scale=MatchLowercase,Ligatures=TeX]{DejaVuSansMono}}
+\fontdimen2\font=0.5ex
+
+% Break lines after ::
+\def\::{\discretionary{::}{}{::}}
