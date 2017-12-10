@@ -1,8 +1,10 @@
-name: 2018_UD2_lugdunum
-name_formatted: '[2018][UD2] Lugdunum'
+name: 2018_UD3_lugdunum
+type: pdf
+name_formatted: '[2018][UD3] Lugdunum'
 template_file: common/template.tex
-title: "User Documentation n\xB02"
-version: '2.0'
+title: User Documentation n°3
+version: 3.0
+tocdepth: 1
 accountant: Yoann Long
 abstract:
 - type: content
@@ -15,18 +17,32 @@ bodies:
 - type: content
   source: common/eip.md
   url: https://hackmd.io/EwMxFME5wNnBaALAYwIaqQZgCbfugVgEZ5kAOI1ImABlgHZ7kg==/download
+- type: content
+  source: common/doc-intro.md
+  url: https://hackmd.io/EwYwHApgZgDDCcBaAjAQ2cRAWCBWARovhMGCiFKhFiPmKhUA/download
 - type: chapter
   title: Lugdunum
 - type: content
-  source: doc/quickstart.md
+  source: doc/Lugdunum/quickstart.md
   url: https://hackmd.io/JwEwHAxgDAhgRgZgLRmBESAsBGBGxgjICmCAZgGwQDsArBJjZkA/download
 - type: content
   source: doc/contact-us.md
+  url: https://hackmd.io/JzBsCMGYFMEZoLQDMCGATAHAgLAVm9guAOzgDGCoEsZkwSss+QA=/download
 - type: chapter
   title: Lugbench
 - type: content
-  source: doc/lugbench-user.md
+  source: doc/LugBench/user.md
   url: https://hackmd.io/CwEwZgnMCMDGBMBaArBWFHGZRBDAbAAzIq6xEDsApiFYYQBxA===/download
+- type: chapter
+  title: Lugbench API
+- type: content
+  source: doc/LugBench-API/user.md
+  url: https://hackmd.io/IwZgHApghg7ALATgLQFYAMaBmS5pcgIwQyTAXIhhWEzjgDYg/download
+- type: chapter
+  title: Lugbench Website
+- type: content
+  source: doc/LugBench-Website/user.md
+  url: https://hackmd.io/CwRgpgTMAMCGBsBaaBmArAdkcAxgIywA4ATPMRATkOAjDQgzpiA=/download
 authors:
 - name: Yoann Long
 - name: Antoine Bolvy
@@ -35,8 +51,7 @@ authors:
 - name: Stuart Sulaski
 - name: Corentin Chardeau
 - name: Nicolas Comte
-- name: Alexandre Quivy
-- name: "Guillaume Sabati\xE9"
+- name: Guillaume Sabatié
 history:
 - date: 2017-03-07
   authors:
@@ -67,4 +82,14 @@ history:
   version: '2.0'
   modified_sections:
   - All Sections
-  comment: Second version of the Technical documentation. Added Lugbench
+  comment: Second version of the User documentation. Added Lugbench
+- date: 2017-12-20
+  authors:
+  - Antoine Bolvy
+  - Guillaume Sabatié
+  - Guillaume Labey
+  - Stuart Sulaski
+  version: 3.0
+  modified_sections:
+  - All Sections
+  comment: Third version of the User documentation
