@@ -1,8 +1,10 @@
-name: '2018_ID2_lugdunum'
-name_formatted: '[2018][ID2] Lugdunum'
+name: 2018_ID3_lugdunum
+type: pdf
+name_formatted: '[2018][ID3] Lugdunum'
 template_file: common/template.tex
-title: 'Installation Documentation n°2'
-version: '2.0'
+title: Installation Documentation n°3
+version: 3.0
+tocdepth: 1
 accountant: Yoann Long
 abstract:
 - type: content
@@ -18,7 +20,7 @@ bodies:
 - type: chapter
   title: Lugdunum
 - type: content
-  source: doc/build.md
+  source: doc/Lugdunum/build.md
   url: https://hackmd.io/MYZgpgZgDMCcsFpwgEwICwFYJgQQwEYxgEAjPYFANnXQgHZNM8g=/download
 - type: content
   source: doc/contact-us.md
@@ -26,8 +28,18 @@ bodies:
 - type: chapter
   title: Lugbench
 - type: content
-  source: doc/lugbench-build.md
-  url: https://hackmd.io/BzAmDME5gZgJgLSQKalAgLJOB2JdhEBjABjgFYA2Ig5ARgENKg==/download
+  source: doc/LugBench/build.md
+  url: https://hackmd.io/IwBgbATMBmDGAcBaArNAJsxAWARjgzIgIYjQSLzACc8Ya088OA7PkA==/download
+- type: chapter
+  title: Lugbench API
+- type: content
+  source: doc/LugBench-API/build.md
+  url: https://hackmd.io/GYFgzApgHAxjBMBaYYYENEigdmIgnGAAwCMiRY8AbDPiURDGFUA=/download
+- type: chapter
+  title: Lugbench Website
+- type: content
+  source: doc/LugBench-Website/build.md
+  url: https://hackmd.io/MYFgDGDsCMCmCGBaAzADgKysSAnMLqOySAbJDvMpFQGbDCRA/download
 authors:
 - name: Yoann Long
 - name: Antoine Bolvy
@@ -36,7 +48,6 @@ authors:
 - name: Stuart Sulaski
 - name: Corentin Chardeau
 - name: Nicolas Comte
-- name: Alexandre Quivy
 - name: Guillaume Sabatié
 history:
 - date: 2017-03-07
@@ -68,3 +79,13 @@ history:
   modified_sections:
   - All Sections
   comment: 'Added LugBench and general improvements for the 2.0 version of the document'
+- date: 2017-12-20
+  authors:
+  - Antoine Bolvy
+  - Guillaume Sabatié
+  - Guillaume Labey
+  - Stuart Sulaski
+  version: 3.0
+  modified_sections:
+  - All Sections
+  comment: Third version of the Installation documentation
