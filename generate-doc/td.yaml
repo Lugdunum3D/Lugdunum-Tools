@@ -1,8 +1,10 @@
-name: 2018_TD2_lugdunum
-name_formatted: '[2018][TD2] Lugdunum'
-template_file: ./common/template.tex
-title: Technical Documentation n°2
-version: '2.0'
+name: 2018_TD3_lugdunum
+type: pdf
+name_formatted: '[2018][TD3] Lugdunum'
+template_file: common/template.tex
+title: Technical Documentation n°3
+version: 3.0
+tocdepth: 1
 accountant: Yoann Long
 abstract:
 - type: content
@@ -15,17 +17,19 @@ bodies:
 - type: content
   source: common/eip.md
   url: https://hackmd.io/EwMxFME5wNnBaALAYwIaqQZgCbfugVgEZ5kAOI1ImABlgHZ7kg==/download
+- type: content
+  source: common/doc-intro.md
+  url: https://hackmd.io/EwYwHApgZgDDCcBaAjAQ2cRAWCBWARovhMGCiFKhFiPmKhUA/download
 - type: chapter
   title: Lugdunum
 - type: content
-  source: doc/architecture.md
+  source: doc/Lugdunum/architecture.md
   url: https://hackmd.io/MbAmE4HZwNgRgLQA4CGKAsD0FMBMKFYBmAmABjkmEkhn13SA/download
 - type: content
-  source: doc/guidelines.md
+  source: doc/Lugdunum/guidelines.md
   url: https://hackmd.io/JwRgHKBMDGBsC01JjPALAIwMwFZ4ENYATEeLAUyw3MgDMdoK0g==/download
   title: Code Guidlelines and Style
   header_shift: 1
-  tocdepth: 2
 - type: content
   source: doc/contributing.md
   url: https://hackmd.io/OwJgnMCMBmBsAMBaaBTSBWRAWSBjLiAhtPAYQBzAQXTmFbRA/download
@@ -33,13 +37,20 @@ bodies:
   source: doc/contact-us.md
   url: https://hackmd.io/JzBsCMGYFMEZoLQDMCGATAHAgLAVm9guAOzgDGCoEsZkwSss+QA=/download
 - type: chapter
-  title: Lugbench
+  title: LugBench
 - type: content
-  source: doc/lugbench-architecture.md
-  url: https://hackmd.io/MwJgHAZgjAbMCsBaGMAsATRqDGEKIE4Y9EAjCMAU3nQkvQENLUg=/download
+  source: doc/LugBench/architecture.md
+  url: https://hackmd.io/IwZhAYFY3BaAmA7AIxLALAQwKbNslATlhGHQDYQBjAMyoBMUAOIA/download
+- type: chapter
+  title: Lugbench API
 - type: content
-  source: doc/lugbench-api.md
+  source: doc/LugBench-API/architecture.md
   url: https://hackmd.io/OwNgTCCGCMDMAMBaAZmaAjRAWMATAxogJwCsuyiuYysR0WyqIRQA/download
+- type: chapter
+  title: Lugbench Website
+- type: content
+  source: doc/LugBench-Website/architecture.md
+  url: https://hackmd.io/MwJgHAZgjAbMCsBaGMAsATRqDGEKIE4Y9EAjCMAU3nQkvQENLUg=/download
 authors:
 - name: Yoann Long
 - name: Antoine Bolvy
@@ -48,7 +59,6 @@ authors:
 - name: Stuart Sulaski
 - name: Corentin Chardeau
 - name: Nicolas Comte
-- name: Alexandre Quivy
 - name: Guillaume Sabatié
 history:
 - date: 2017-03-07
@@ -101,7 +111,14 @@ history:
   - Yoann Picquenot
   - Corentin Chardeau
   - Quentin Buathier
-  version: '2.0'
+  version: 2.0
+- date: 2017-12-20
+  authors:
+  - Antoine Bolvy
+  - Guillaume Sabatié
+  - Guillaume Labey
+  - Stuart Sulaski
+  version: 3.0
   modified_sections:
   - All Sections
-  comment: Second version of the Technical documentation and added LugBench
+  comment: Third version of the Technical documentation
