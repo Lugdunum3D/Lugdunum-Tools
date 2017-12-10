@@ -78,16 +78,6 @@ subtree: glTF2-loader
 limit: -1
 ```
 
-### lugdunum-glTF2-convertor
-
-```wbs
-features: ./wbs/features.csv
-root_name: Lugdunum
-type: tree
-subtree: lugdunum-glTF2-convertor
-limit: -1
-```
-
 ### Communication
 
 ```wbs
@@ -98,7 +88,7 @@ subtree: Communication
 limit: -1
 ```
 
-### Lug-Bench
+### LugBench
 
 ```wbs
 features: ./wbs/features.csv

@@ -4,6 +4,7 @@
 100,100,        CMake,"Système de compilation disponible via CMake, permettant la compilation de manière automatisée sur Linux, Windows et Android",
 100,100,        CMake FindLugdunum,Création d'outil utilitaires permettant la recherche et l'integration harmonieuse de nos bibliothèques,
 100,100,        Third party integration,Integration des binaires des dépendences tierces dont nous dépendons,
+90,100,            Téléchargement dépendances,Téléchargement automatique des dépendances,
 100,100,        Script d'automatisation,,
 ,,    API rendu bas niveau,"Abstraction facilitant l'utilisation de l'API Vulkan (par exemple gestion de la pipeline graphique, des différents buffers, etc)",group
 100,100,        CommandBuffer,Abstraction des ordres envoyés au GPU,
@@ -20,9 +21,7 @@
 95,95,    Gestionnaire de ressources,Gestion centralisée des ressources et de leur chargement,
 ,,    Gestionnaire de rendu,,group
 100,100,        Forward rendering technique,Technique de rendu non optimisé en une seule phase,
-0,0,        Deffered rendering technique,"Technique de rendu optimisé dont les calculs sont séparés en plusieurs phases, permettant entre autres d'optimiser les lumières",
-0,0,        Multithread,Phases de rendu répartis sur plusieurs fils d'éxécution,
-0,0,        Tile-based Rendering,Optimisation de la pipeline pour les rendu sur plateformes mobiles,
+0,100,        Multithread,Phases de rendu répartis sur plusieurs fils d'éxécution,
 ,,    Camera,,group
 100,100,        Camera Libre,Camera qui est déplacé directement par l'utilisateur,
 0,0,        Spline Camera,Camera de déplacement automatique selon un ensemble de points,
@@ -31,11 +30,10 @@
 100,100,        Custom Viewports,Permet de définir une ou plusieurs zones de rendu sur l'écran,
 100,100,        Synchronisation d'affichage,Technique de permettant de synchroniser un flux vidéo et un système vidéo (un écran),
 0,0,        Contrôle du Gamma,Permet de modifier le contraste ,
-0,75,        Anti-Crénelage,"Réduction de l'effet ""escalier"" resultant d'un rendu 3D transposé sur un ecran 2D",
+75,75,        Anti-Crénelage,"Réduction de l'effet ""escalier"" resultant d'un rendu 3D transposé sur un ecran 2D",
 ,,    Gestion de scènes,,group
 95,95,        Gestion des modèles GLTF 2.0,Import de modèles glTF2.0 via notre bibliothèque glTF2-loader,
 100,100,        Transformation,"Translation, rotation ou mise à l'échelle d'un objet dans l'espace",
-0,0,        Partitionnement de l'espace,Algorithme d'optimisation des calculs,
 ,,    Meshes,,group
 100,100,        Gestion de Meshes,,
 100,100,        Generation dynamique de mesh,,
@@ -44,10 +42,8 @@
 100,100,        Lumière directionnelle,Type de lumière directionnelle ayant un angle et une direction,
 100,100,"        Lumière ""Point""",Lumière qui émet dans toutes les directions à partir d'un point,
 100,100,"        Lumière ""Spot""",Lumière qui émet un cône dans une direction donnée,
-0,0,"        Lumière ""Area""",,
 ,,    Textures,,group
 100,100,        Chargement des textures,Importation de différent type de fichiers de textures (associé généralement à un modéle 3D),group
-0,0,        Compression des textures,Il existe plusieurs algorithme de compression de texture gérer coté GPU,
 0,0,        Mip map,Adaptation du niveau de détail des textures par rapport à la distance de l'objet et de la camera,
 ,,    Materiaux,"Surfaces avec différentes propriétés (couleur, brillance, réaction à la lumière...)",group
 100,100,        Couleur,Couleur de base du material,
@@ -61,16 +57,12 @@
 100,100,        Emissive,"Materiau auto-éclairé, non-affecté par les lumières dans son environnement",
 100,100,        Emissive map,Encodage de l'emissive d'un material dans une texture,
 ,,    Effets,,group
-,,        Mapping,,group
-0,0,            Parralax bump mapping,Technique avancé de pertubation de la normal,
-,,        Shadow Mapping,"Gestion de different type d'ombre (statique, dynamique)",group
-0,0,            Shadow map,Technique qui permet d'ajouter des ombres précalculé à une scène. Ce qui permet de gagner en performance comparé aux ombres dynamique.,
-0,0,            Cascaded Shadow Maps,Ombres calculées au runtime,
+0,0,        Shadow map,Ombres précalculées à une scène.,
 0,0,        Profondeur de champ de vision,Effet de la caméra pour simuler l'effet de focus d'une vraie caméra ,
 0,0,        Bloom,Effet qui donne l'impression d'un halo de lumière autour de sa source,
 100,100,        Skybox,Gestion de la texture du ciel,
-0,50,        High Dynamic Range (HDR),Gestion de nombreux niveaux d'intensité lumineuse,
-0,90,        Indirect Lighting,L'environnement influe sur les couleurs de l'objet,
+50,50,        High Dynamic Range (HDR),Gestion de nombreux niveaux d'intensité lumineuse,
+90,90,        Indirect Lighting,L'environnement influe sur les couleurs de l'objet,
 ,,    Gestionnaire 2D,Gestion simple des surfaces 2D,group
 ,,        Fonts,Chargement et affichage simplifié de polices d'écriture,group
 100,100,            Chargement de fonts,,
@@ -78,8 +70,6 @@
 100,100,        Dessin 2D (HUD),Afichage d'un menu ou d'une interface,
 ,,    Optimisations,,group
 0,0,        Pipeline cache,Mise en cache de la pipeline 3D,
-0,0,        Tesselation,Technique qui permet d'ajouter du détail au mesh en ajoutant des vertices qui n'étaient pas présent dans le mesh de base,
-0,0,        Compute Shaders,,
 ,,,,
 ,,Bibliothèque math,Librairie de maths multi-plateforme,group
 100,100,    Vecteurs,Integration des vecteurs ,
@@ -94,7 +84,7 @@
 ,,    Events,,group
 100,100,        Clavier,Gestion des evenements clavier,
 100,100,        Souris,Gestion des evenements souris,
-50,60,        Écran tactile,Gestion des evenements écran tactile,
+60,60,        Écran tactile,Gestion des evenements écran tactile,
 100,100,    Gestion des librairies partagées,"Chargement de librairies dynamiques multiplateformes (.dll, .so)",
 ,,    Gestionnaire d'allocation mémoire,Gestion des outils d'allocation mémoire,
 100,100,        Basic,,
@@ -102,9 +92,7 @@
 100,100,        Stack,,
 80,80,        Tests unitaires,Tests de validation du fonctionnement du gestionnaire d'allocation mémoire,
 100,100,    Gestion de timer,Gestion du temps ,
-,,    Tâches asynchrones,Gestion des tâches parrallèles,group
-0,0,        Threads pool,"Management tool for threading, optimisation",
-0,0,        Primitives de synchronisation,Read/Write Mutex,
+0,100,    Threads pool,"Management tool for threading, optimisation",
 ,,    Gestion des erreurs,Uniformisation et journalisations des erreurs ,group
 100,100,"        Debug (assert, etc)","Outils de débug, tels que les asserts",
 100,100,        Journalisation des erreurs,"Outil de journalisation de messages d'informations et erreurs (logging), multiplateforme",
@@ -117,20 +105,14 @@
 100,100,        CMake,"Système de compilation disponible via CMake, permettant la compilation de manière automatisée sur Linux, Windows et Android",
 100,100,        CMake Find,Création d'outil utilitaires permettant la recherche et l'integration harmonieuse de nos bibliothèques,
 95,95,    Chargement de modèles au format json,Chargement de modèles au format json,
-0,0,    Chargement de modèles au format binaire,Chargement de modèles au format binaire,
 ,,    Chargement de textures,,group
 100,100,        PNG,Prise en charge des textures au format PNG,
 100,100,        JPG,Prise en charge des textures au format JPG,
 100,100,        TGA,Prise en charge des textures au format TGA,
 100,100,        BMP,Prise en charge des textures au format BMP,
 ,,,,
-,,lugdunum-glTF2-convertor,Librairie et utilitaire de conversion de glTF 2.0 en un glTF 2.0 qui respecte les contraintes imposés par Lugdunum,group
-0,0,    Librairie,,
-0,0,    Exécutable,,
-,,,,
 ,,Communication,,group
 75,75,    Site vitrine,Site faisant la liaison entre l'équipe de développement et les utilisateurs du moteur de jeu,
-0,0,    Dev-Blog,"Site de communication sur les verrous techniques rencontrés par l'équipe, et nos methodes de résolutions",
 ,,    Documentation,,group
 85,85,        Documentation Build Process,Documentation Build Process,
 85,85,        Documentation Technique,Documentation Technique,
@@ -141,18 +123,20 @@
 100,100,        RestAPI,RestAPI qui permet la communication entre la base de donnée et le site web / client LugBench,
 100,100,        Base de donnée (MongoDB),Base de donnée intégrant tous les résultats des tests lancés par les utilisateurs de LugBench,
 ,,    Frontend,,group
-40,90,        Site web de presentation des données,Site web permettant de récupérer les executables précompiler de LugBench et de visualiser les résultats,
-80,90,        Affichage sous forme de tableau,Affichage des tous les resultats de tests lancés par les utilisateurs de LugBench sous forme de tableau avec possibilité de tri des données,
-0,0,        Compte utilisateur,,
+90,90,        Site web de presentation des données,Site web permettant de récupérer les executables précompiler de LugBench et de visualiser les résultats,
+90,90,        Affichage sous forme de tableau,Affichage des tous les resultats de tests lancés par les utilisateurs de LugBench sous forme de tableau avec possibilité de tri des données,
+0,70,        Compte utilisateur,,
 ,,    Application,,group
 ,,        Build process,Simplification du procédé de compilation multi-platforme,group
 100,100,            CMake,"Système de compilation disponible via CMake, permettant la compilation de manière automatisée sur Linux, Windows et Android",
 100,100,            Third party integration,Création d'outil utilitaires permettant la recherche et l'integration harmonieuse de nos bibliothèques,
-45,100,            Script d'automatisation,Script automatisant la compilation des dépendances externes,
-80,90,        GUI de l'application,Partie graphique de l'application LugBench,
+100,100,            Script d'automatisation,Script automatisant la compilation des dépendances externes,
+90,100,            Téléchargement dépendances,Téléchargement automatique des dépendances,
+90,90,        GUI de l'application,Partie graphique de l'application LugBench,
 100,100,        Récuperation des specs Vulkan,Récupération des toutes les données que Vulkan peut nous fournir à propos de la machine de l'utilisateur,
 90,90,        Exécution des scènes,Execution des scènes 3D avec notre moteur Lugdunum afin de benchmarker la machine de l'utilisateur,
 90,90,        Upload des specs utilisateur au serveur,Envoi au serveur LugBench des informations et resultats des test de la machine utilisateur via la RestAPI,
-0,0,        Détection Hardware,Detection des specs de la machine de l'utilisateur,
+0,100,        Mise en ligne Play Store,,
+50,100,        Model Viewer,Permet de visualiser des models parmis une liste,
 0,0,    Intégration Phoronix Test Suite,Gestion du système autonomatisé de benchmarking de Phoronix ,
 70,70,    Génération de score,Génération d'un score en se basant sur les FPS obtenus lors de l'affichage de la scene,

@@ -127,11 +127,11 @@
 \textbf{Tableau des révisions}
 
 \noindent
-\begin{tabularx}{\textwidth}{l P{3cm} l P{3.5cm} >{\raggedright\arraybackslash}X}
+\begin{tabularx}{\textwidth}{@{}l P{3cm} l P{3.5cm} >{\raggedright\arraybackslash}X@{}}
 \toprule
-\textbf{Date}& \textbf{Auteurs}& \textbf{Version}& \textbf{Section(s) Modifiée(s)}& \textbf{Commentaires(s)} \\\midrule
-\b{for change in history}
-\v{change.date}&\b{for author in change.authors}\mbox{\v{author}}\b{if not loop.last}, \b{endif}\b{endfor}&\v{change.version}&\v{', '.join(change.modified_sections)|escape}&\v{change.comment}\\\b{if not loop.last}\midrule\b{endif}
+\textbf{Date}& \textbf{Auteurs}& \textbf{Version}& \textbf{Section(s) Modifiée(s)}& \textbf{Commentaires(s)} \\\midrule\endhead
+\b{for change in history|reverse}
+\v{change.date}&\b{for author in change.authors}\mbox{\v{author}}\b{if not loop.last}, \b{endif}\b{endfor}&\v{change.version}&\v{', '.join(change.modified_sections)|texesc}&\v{change.comment|texesc}\\\b{if not loop.last}\midrule\b{endif}
 
 \b{endfor}
 \bottomrule
