@@ -16,4 +16,4 @@ You can find our repositories on Github, at [Lugdunum3D](https://github.com/Lugd
 
 ## Mailing list
 
-If you want to write us an email, you can totally do so at [lugdunum_2018@labeip.epitech.eu](mailto:lugdunum_2018@labeip.epitech.eu).
+If you want to write us an email, you can do so at [lugdunum_2018@labeip.epitech.eu](mailto:lugdunum_2018@labeip.epitech.eu).
