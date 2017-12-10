@@ -1,1 +1,0 @@
-../../../Lugdunum/doc/guidelines.md
