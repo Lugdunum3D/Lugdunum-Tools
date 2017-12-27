@@ -9,7 +9,7 @@ __author__ = "Antoine Bolvy"
 import re
 import httplib2
 import yaml
-from panflute import run_filter, CodeBlock, RawBlock
+from panflute import run_filter, CodeBlock, RawBlock, Para, Str, Image
 from panflute.elements import builtin2meta
 import sys
 import os
@@ -21,7 +21,7 @@ from apiclient import discovery
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
-
+from apiclient.http import MediaIoBaseDownload
 
 def tex_escape(text):
     """
@@ -76,10 +76,6 @@ LATEX_JINJA_ENV = jinja2.Environment(
 
 LATEX_JINJA_ENV.filters['texesc'] = tex_escape
 
-SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-CLIENT_SECRET_FILE = '../client_secret.json'
-APPLICATION_NAME = 'Pandoc Google Sheets API Python'
-
 class GDrive(object):
     def __init__(self, config):
         super().__init__()
@@ -98,39 +94,57 @@ class GDrive(object):
         credential_dir = os.path.join(home_dir, '.credentials')
         if not os.path.exists(credential_dir):
             os.makedirs(credential_dir)
-        credential_path = os.path.join(credential_dir,
-                                       'sheets.googleapis.com-python-lugdunum.json')
+        credential_path = os.path.join(credential_dir, 'gdrive-lugdunum.json')
 
         store = Storage(credential_path)
         credentials = store.get()
         if not credentials or credentials.invalid:
-            flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-            flow.user_agent = APPLICATION_NAME
-            if flags:
-                credentials = tools.run_flow(flow, store, flags)
-            else: # Needed only for compatibility with Python 2.6
-                credentials = tools.run(flow, store)
-            print('Storing credentials to ' + credential_path)
+            raise RuntimeError('Run gdrive-get-credentials to store credentials')
         return credentials
 
-    def fetch_data(self):
+    def generate(self):
         credentials = self.get_credentials()
         http = credentials.authorize(httplib2.Http())
-        discoveryUrl = 'https://sheets.googleapis.com/$discovery/rest?version=v4'
-        service = discovery.build('sheets', 'v4', http=http, discoveryServiceUrl=discoveryUrl)
-        result = service.spreadsheets().values().get(
-            spreadsheetId=self.config['doc_id'],
-            range=self.config['range']
-        ).execute()
-        values = result.get('values', [])
-        return values
+        data = None
 
-    def generate_table(self):
-        template = LATEX_JINJA_ENV.get_template('./gdrive-table.tex')
+        if self.config['type'] == 'spreadsheets':
+            template = LATEX_JINJA_ENV.get_template('./gdrive-table.tex')
+            discoveryUrl = 'https://sheets.googleapis.com/$discovery/rest?version=v4'
+            service = discovery.build('sheets', 'v4', http=http, discoveryServiceUrl=discoveryUrl)
+            result = service.spreadsheets().values().get(
+                spreadsheetId=self.config['doc_id'],
+                range=self.config['range']
+            ).execute()
+            data = result.get('values', [])
+            output_latex = template.render(data=data, **self.config)
+            return RawBlock(text=output_latex, format="latex")
 
-        lines = self.fetch_data()
+        if self.config['type'] == 'drawings':
+            service = discovery.build('drive', 'v3', http=http)
+            results = service.files().get(fileId=self.config['doc_id'], fields='modifiedTime,name').execute()
+
+            request = service.files().export_media(
+                fileId=self.config['doc_id'],
+                mimeType='application/pdf'
+            )
+
+            file_name = 'gdrive-data/' + self.config['doc_id'] + '.pdf'
+
+
+            print(request, file=sys.stderr)
+            with open(file_name, 'wb') as fh:
+                downloader = MediaIoBaseDownload(fh, request)
+                done = False
+                while done is False:
+                    status, done = downloader.next_chunk()
+                    print(status, done, file=sys.stderr)
+                    print("Download %d%%." % int(status.progress() * 100), file=sys.stderr)
+
+            return Para(Image(Str(''), url=file_name, title=self.config.get('title', ''), attributes={'width': '100%'}))
+
+        return data
+
         # print(data, file=sys.stderr)
-        return template.render(lines=lines, columns_format=self.config['columns_format'])
 
 def prepare(doc):
     """
@@ -156,8 +170,7 @@ def handle_google_drive(elem, doc):
 
     gdrive = GDrive(yaml.load(elem.text))
 
-    output_latex = gdrive.generate_table()
-    return RawBlock(text=output_latex, format="latex")
+    return gdrive.generate()
 
 def finalize(doc):
     """

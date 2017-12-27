@@ -134,6 +134,8 @@ class Build(object):
 
         cmnd = ['lualatex', '--interaction=nonstopmode', self.config['name']]
 
+        logging.debug('Command is: ' + ' '.join(cmnd))
+
         pipes = subprocess.Popen(cmnd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         std_out, std_err = pipes.communicate()
 
@@ -199,6 +201,7 @@ class Build(object):
             '--from=markdown_github+yaml_metadata_block+raw_tex+inline_code_attributes+implicit_figures+link_attributes+bracketed_spans+footnotes+inline_notes',
             '--metadata=hash-prefix:' + hash_prefix,
             '--filter=./pandoc-filters/pandoc-links-to-footnotes.py',
+            '--filter=./pandoc-filters/pandoc-google-drive.py',
             '--filter=./pandoc-filters/pandoc-github-img.py',
             '--filter=./pandoc-filters/pandoc-dl-images.py',
             '--filter=./pandoc-filters/pandoc-mermaid.py',
@@ -206,7 +209,6 @@ class Build(object):
             '--filter=./pandoc-filters/pandoc-generate-doxylinks.py',
             '--filter=./pandoc-filters/pandoc-alerts.py',
             '--filter=./pandoc-filters/pandoc-add-captions.py',
-            '--filter=./pandoc-filters/pandoc-google-drive.py'
         ]
 
         if self.config['type'] != 'website':

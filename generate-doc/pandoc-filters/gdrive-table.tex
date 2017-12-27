@@ -15,8 +15,8 @@
 \rowcolors{2}{black!5}{white}
 \begin{tabularx}{1.15\linewidth}{\v{columns_format}}
 \toprule
-\v{table_line(lines[0])}
+\v{table_line(data.lines[0])}
 \midrule
-\b{for line in lines[1:]}\v{table_line(line)}\b{endfor}\bottomrule
+\b{for line in data.lines[1:]}\v{table_line(line)}\b{endfor}\bottomrule
 \end{tabularx}
 \end{spacing}
