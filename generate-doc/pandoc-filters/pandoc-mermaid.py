@@ -39,7 +39,7 @@ def mermaid_to_svg(elem, doc):
         with open(tmpfn, 'wb') as tmpfn_f:
             tmpfn_f.write(code.encode('utf-8'))
 
-        cmd_line = ['mermaid', '-s', tmpfn, '--phantomPath=/usr/bin/phantomjs', '-o', IMAGE_DIR]
+        cmd_line = ['mmdc', '--disable-sandbox', '-i', tmpfn, '-o', target]
         sys.stderr.write("Running %s\n" % " ".join(cmd_line))
 
         try:
