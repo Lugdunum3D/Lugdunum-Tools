@@ -11,6 +11,7 @@
     numbers=left,
     numberstyle=\tiny,
     numbersep=5pt,
+    upquote=true,
     breaklines=true,
     % breakatwhitespace,
     showstringspaces=false,
@@ -21,3 +22,11 @@
     commentstyle=\color{OliveGreen!80},
     stringstyle=\color{WildStrawberry}
 }
+
+% https://github.com/jgm/pandoc-templates/commit/3b58ea12d943ddc7a5c8e8d03a31cde9881ad5b1
+\newcommand{\passthrough}[1]{#1}
+
+% https://tex.stackexchange.com/a/27718/120111
+\makeatletter
+\def\lst@filenamerpl{_\textunderscore $\textdollar}
+\makeatother
