@@ -16,3 +16,12 @@
 *.bib
 
 client_secret.json
+website/
+etags.yaml
+graphviz-images/
+mermaid-images/
+env/
+cache-dl-images/
+build*/
+fonts
+2018_*
