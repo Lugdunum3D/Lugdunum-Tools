@@ -1,22 +1,13 @@
 #!/usr/bin/env python
 
 """
-Pandoc filter to fix and normalize images tags with width/height attributes,
-as you would do in a Github flavored markdown README file
-
-e.g.
-
-```
-<img src="http://design.ubuntu.com/wp-content/uploads/logo-ubuntu_cof-orange-hex.svg" width="16">
-```
-
-is converted to a real Image with a width of 16px
+TODO
 """
 
 __author__ = "Antoine Bolvy"
 
 import re
-from panflute import run_filter, Para, Str, Space, Strong
+from panflute import run_filter, Para, Str, RawInline
 
 def alerts_to_text(elem, _):
     """
@@ -31,17 +22,14 @@ def alerts_to_text(elem, _):
     if not isinstance(elem.content[-1], Str):
         return
 
-    match1 = re.match(r':::(info|warning|danger)', elem.content[0].text)
+    match1 = re.match(r':::(info|warning|danger|success)', elem.content[0].text)
     match2 = re.match(r':::', elem.content[-1].text)
     if match1 and match2:
-        if match1.group(1) == 'info':
-            return Para(Strong(Str('Note:')), Space, *elem.content[2:-2])
-        if match1.group(1) == 'warning':
-            return Para(Strong(Str('Warning:')), Space, *elem.content[2:-2])
-        if match1.group(1) == 'danger':
-            return Para(Strong(Str('Caution:')), Space, *elem.content[2:-2])
-
-
+        return Para(
+            RawInline('\\begin{infobox' + match1.group(1).title() + '}', format='latex'),
+            *elem.content[2:-2],
+            RawInline('\\end{infobox' + match1.group(1).title() + '}', format='latex')
+        )
 
 def main(doc=None):
     """

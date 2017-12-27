@@ -1,0 +1,53 @@
+\ProvidesPackage{infoboxes}
+
+\RequirePackage{tikz}
+\RequirePackage[framemethod=tikz]{mdframed}
+\usetikzlibrary{calc}
+
+\definecolor{infoboxes_info}{rgb}{0.04, 0.55, 0.89}
+\definecolor{infoboxes_info_bg}{RGB}{222, 242, 255}
+
+\definecolor{infoboxes_warning}{RGB}{255, 193, 7}
+\definecolor{infoboxes_warning_bg}{RGB}{252, 248, 227}
+
+\definecolor{infoboxes_danger}{RGB}{220, 53, 69}
+\definecolor{infoboxes_danger_bg}{RGB}{242, 222, 222}
+
+\definecolor{infoboxes_success}{RGB}{13, 124, 66}
+\definecolor{infoboxes_success_bg}{RGB}{223, 240, 216}
+
+\newmdenv[
+  backgroundcolor=infoboxes_info_bg,%
+  frametitlefont=\color{infoboxes_info}\bfseries,
+  nobreak,
+  linecolor=infoboxes_info,
+  linewidth=0.1cm,
+  topline=false, rightline=false, bottomline=false,
+]{infoboxInfo}
+
+\newmdenv[
+  backgroundcolor=infoboxes_warning_bg,%
+  frametitlefont=\color{infoboxes_warning}\bfseries,
+  nobreak,
+  linecolor=infoboxes_warning,
+  linewidth=0.1cm,
+  topline=false, rightline=false, bottomline=false,
+]{infoboxWarning}
+
+\newmdenv[
+  backgroundcolor=infoboxes_danger_bg,%
+  frametitlefont=\color{infoboxes_danger}\bfseries,
+  nobreak,
+  linecolor=infoboxes_danger,
+  linewidth=0.1cm,
+  topline=false, rightline=false, bottomline=false,
+]{infoboxDanger}
+
+\newmdenv[
+  backgroundcolor=infoboxes_success_bg,%
+  frametitlefont=\color{infoboxes_success}\bfseries,
+  nobreak,
+  linecolor=infoboxes_success,
+  linewidth=0.1cm,
+  topline=false, rightline=false, bottomline=false,
+]{infoboxSuccess}
