@@ -171,15 +171,15 @@
 
 \b{elif file.type == 'content'}
 \b{if file.title is defined}\section{\v{file.title}}\b{endif}
-% \b{if file.tocdepth is defined}
-% \addtocontents{toc}{\setcounter{tocdepth}{\v{file.tocdepth}}}
-% \b{endif}
+\b{if file.tocdepth is defined}
+\addtocontents{toc}{\setcounter{tocdepth}{\v{file.tocdepth}}}
+\b{endif}
 
 \input{\v{file.generated}}
 
-% \b{if file.tocdepth is defined}
-% \addtocontents{toc}{\setcounter{tocdepth}{\v{tocdepth}}}
-% \b{endif}
+\b{if file.tocdepth is defined}
+\addtocontents{toc}{\setcounter{tocdepth}{\v{tocdepth}}}
+\b{endif}
 \clearpage
 \b{endif}
 \b{endfor}
