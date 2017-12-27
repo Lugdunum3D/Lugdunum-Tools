@@ -23,6 +23,8 @@ def links_to_footnotes(elem, doc):
             return
         if elem.url.startswith('mailto:'):
             return
+        if elem.url == stringify(elem):
+            return
         return [elem, Note(Para(RawInline(stringify(elem), format='tex'), Str(':'), Space(), Link(Str(elem.url), title=elem.title, url=elem.url)))]
 
 def main(doc=None):
